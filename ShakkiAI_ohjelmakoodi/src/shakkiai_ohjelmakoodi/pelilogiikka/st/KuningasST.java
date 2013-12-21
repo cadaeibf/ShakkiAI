@@ -7,7 +7,7 @@ package shakkiai_ohjelmakoodi.pelilogiikka.st;
 import shakkiai_ohjelmakoodi.pelilogiikka.Kentta;
 
 /**
- *
+ * Siirrontarkastaja, joka tarkistaa Kuningas-luokan Nappuloiden siirrot.
  * @author anterova
  */
 public class KuningasST implements Siirrontarkastaja {

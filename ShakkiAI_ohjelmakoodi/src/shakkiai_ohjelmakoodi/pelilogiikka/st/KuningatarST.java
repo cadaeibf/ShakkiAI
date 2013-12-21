@@ -7,7 +7,7 @@ package shakkiai_ohjelmakoodi.pelilogiikka.st;
 import shakkiai_ohjelmakoodi.pelilogiikka.Kentta;
 
 /**
- *
+ * Siirrontarkastaja, joka tarkistaa Kunigatar-luokan Nappuloiden siirrot.
  * @author anterova
  */
 public class KuningatarST implements Siirrontarkastaja {

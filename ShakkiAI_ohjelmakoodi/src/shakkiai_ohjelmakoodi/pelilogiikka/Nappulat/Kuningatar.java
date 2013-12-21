@@ -7,7 +7,7 @@ package shakkiai_ohjelmakoodi.pelilogiikka.Nappulat;
 import shakkiai_ohjelmakoodi.pelilogiikka.Pelaaja;
 
 /**
- *
+ * Kuningatarnappulan toteutus.
  * @author anterova
  */
 public class Kuningatar implements Nappula {

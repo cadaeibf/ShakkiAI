@@ -8,15 +8,13 @@ import shakkiai_ohjelmakoodi.pelilogiikka.Kentta;
 import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Torni;
 
 /**
- *
+ * Siirrontarkastaja, joka tarkistaa Torni-luokan Nappuloiden siirrot.
  * @author anterova
  */
 public class TorniST implements Siirrontarkastaja {
 
     public TorniST() {
     }
-    
-    
 
     @Override
     public boolean tarkista(Kentta kentta, int xa, int ya, int xl, int yl) {

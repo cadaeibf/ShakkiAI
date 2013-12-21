@@ -5,7 +5,7 @@
 package shakkiai_ohjelmakoodi.pelilogiikka;
 
 /**
- *
+ * Luokka ns. ihmispelaajalle.
  * @author anterova
  */
 public class Pelaaja {

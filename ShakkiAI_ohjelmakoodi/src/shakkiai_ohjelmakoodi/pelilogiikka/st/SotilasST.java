@@ -8,7 +8,7 @@ import shakkiai_ohjelmakoodi.pelilogiikka.Kentta;
 import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Sotilas;
 
 /**
- *
+ * Siirrontarkastaja, joka tarkistaa Sotilas-luokan Nappuloiden siirrot.
  * @author anterova
  */
 public class SotilasST implements Siirrontarkastaja {

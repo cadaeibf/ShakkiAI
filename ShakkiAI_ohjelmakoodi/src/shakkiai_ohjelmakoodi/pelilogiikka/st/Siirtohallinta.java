@@ -8,15 +8,13 @@ import java.util.HashMap;
 import shakkiai_ohjelmakoodi.pelilogiikka.Kentta;
 import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Kuningatar;
 import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Lahetti;
-import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Nappula;
 import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Ratsu;
 import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Sotilas;
 import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Torni;
-import shakkiai_ohjelmakoodi.pelilogiikka.st.SotilasST;
-import shakkiai_ohjelmakoodi.pelilogiikka.st.TorniST;
 
 /**
- * Luokka tarkistaa, onko annetut siirrot laillisia.
+ * Luokka tarkistaa, onko annetut siirrot laillisia spesifimpien 
+ * Siirrontarkastajien avulla.
  * @author anterova
  */
 public class Siirtohallinta implements Siirrontarkastaja {

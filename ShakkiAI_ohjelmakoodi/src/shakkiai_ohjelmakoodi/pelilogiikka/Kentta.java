@@ -13,7 +13,8 @@ import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Sotilas;
 import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Torni;
 
 /**
- *
+ * Luokka, joka hallinnoi pelitilannetta kaksiulotteisen Ruutu-alkioisen taulukon
+ * avulla
  * @author anterova
  */
 public class Kentta {
@@ -41,15 +42,35 @@ public class Kentta {
         
     }
     
+    /**
+     * Suorittaa annetun siirron.
+     * @param xa alkuruudun rivinumero
+     * @param ya alkuruudun sarakenumero
+     * @param xl loppuruudun rivinumero
+     * @param yl loppuruudun sarakenumero
+     */
     public void teeSiirto(int xa, int ya, int xl, int yl) {
         kentta[xl][yl].setNappula(kentta[xa][ya].getNappula());
-        kentta[xa][ya].setNappula(null);
+        kentta[xa][ya].poistaNappula();
     }
     
+    /**
+     * Metodi palauttaa Ruudun annetussa paikassa
+     * @param x halutun Ruudun rivinumero
+     * @param y halutun Ruudun sarakenumero
+     * @return haluttu Ruutu
+     */
     public Ruutu haeRuutu(int x, int y) {
         return kentta[x][y];
     }
     
+    /**
+     * Metodi palauttaa Nappulan halutusta paikasta, tai null, jos kyseisessä
+     * paikassa oleva ruutu on tyhjä.
+     * @param x halutun Ruudun rivinumero
+     * @param y halutun Ruudun sarakenumero
+     * @return Nappula halutusta paikasta, tai null, jos Ruutu on tyhjä
+     */
     public Nappula nappulaKoordinaatissa(int x, int y) {
         return kentta[x][y].getNappula();
     }
@@ -138,7 +159,7 @@ public class Kentta {
     
     private boolean uhattuAlhaalta(int pelaajaNumero, int x, int y) {
         int i = 1;
-        while(x+1 < 8 && !kentta[x+i][ y].hasNappula()) i++;
+        while(x+1 < 8 && kentta[x+i][ y].onTyhja()) i++;
         
         if(x+i == 8) return false;
         
@@ -153,7 +174,7 @@ public class Kentta {
     
     private boolean uhattuYlhaalta(int pelaajaNumero, int x, int y) {
         int i = 1;
-        while(x-i >= 0 && !kentta[x+i][ y].hasNappula()) i++;
+        while(x-i >= 0 && kentta[x+i][ y].onTyhja()) i++;
         
         if(x-i == 0) return false;
         
@@ -168,7 +189,7 @@ public class Kentta {
     
     private boolean uhattuOikealta(int pelaajaNumero, int x, int y) {
         int i = 1;
-        while(y+i < 8 && !kentta[x][y+i].hasNappula()) i++;
+        while(y+i < 8 && kentta[x][y+i].onTyhja()) i++;
         
         if(y+i == 8) return false;
         
@@ -183,7 +204,7 @@ public class Kentta {
     
     private boolean uhattuVasemmalta(int pelaajaNumero, int x, int y) {
         int i = 1;
-        while(y-i >= 0 && !kentta[x][y+i].hasNappula()) i++;
+        while(y-i >= 0 && kentta[x][y+i].onTyhja()) i++;
         
         if(y-i == 0) return false;
         

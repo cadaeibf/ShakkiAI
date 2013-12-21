@@ -7,7 +7,7 @@ package shakkiai_ohjelmakoodi.pelilogiikka.st;
 import shakkiai_ohjelmakoodi.pelilogiikka.Kentta;
 
 /**
- *
+ * Siirrontarkastaja, joka tarkistaa Lahetti-luokan Nappuloiden siirrot.
  * @author anterova
  */
 public class LahettiST implements Siirrontarkastaja {

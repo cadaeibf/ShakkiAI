@@ -7,7 +7,8 @@ package shakkiai_ohjelmakoodi.pelilogiikka.Nappulat;
 import shakkiai_ohjelmakoodi.pelilogiikka.Pelaaja;
 
 /**
- *
+ * 
+ * Torninappulan toteutus.
  * @author anterova
  */
 public class Torni implements Nappula {

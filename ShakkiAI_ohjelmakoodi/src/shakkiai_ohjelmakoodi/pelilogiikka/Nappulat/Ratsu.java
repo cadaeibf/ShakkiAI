@@ -7,7 +7,7 @@ package shakkiai_ohjelmakoodi.pelilogiikka.Nappulat;
 import shakkiai_ohjelmakoodi.pelilogiikka.Pelaaja;
 
 /**
- *
+ * Ratsunappulan toteutus.
  * @author anterova
  */
 public class Ratsu implements Nappula {

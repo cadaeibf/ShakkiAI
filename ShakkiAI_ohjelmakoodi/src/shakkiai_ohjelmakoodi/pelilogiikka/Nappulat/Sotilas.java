@@ -7,7 +7,7 @@ package shakkiai_ohjelmakoodi.pelilogiikka.Nappulat;
 import shakkiai_ohjelmakoodi.pelilogiikka.Pelaaja;
 
 /**
- *
+ * Sotilasnappula.
  * @author anterova
  */
 public class Sotilas implements Nappula {
@@ -21,10 +21,21 @@ public class Sotilas implements Nappula {
         eiLiikkunut = true;
     }
     
+    /**
+     * Metodi, jolla muutetaan tieto siitä, onko sotilas liikkunut.
+     */
     public void liikuta() {
         this.eiLiikkunut = false;
     }
     
+    
+    /**
+     * Metodilla selvitetään, onko kyseinen sotilas liikkunut aiemmin kyseisen 
+     * pelin aikana. Tätä tietoa käytetään hyväksi tilanteissa, joissa halutaan
+     * tehdä sotilaan erikoisavausliike.
+     * @return totuusarvo siitä, onko kyseinen sotilas liikkunut kyseisen pelin 
+     * aikana
+     */
     public boolean eiLiikkunut() {
         return eiLiikkunut;
     }

@@ -7,7 +7,7 @@ package shakkiai_ohjelmakoodi.pelilogiikka.Nappulat;
 import shakkiai_ohjelmakoodi.pelilogiikka.Pelaaja;
 
 /**
- *
+ * Lähettinappulan toteutus.
  * @author anterova
  */
 public class Lahetti implements Nappula {

@@ -7,7 +7,7 @@ package shakkiai_ohjelmakoodi.pelilogiikka.Nappulat;
 import shakkiai_ohjelmakoodi.pelilogiikka.Pelaaja;
 
 /**
- *
+ * Kuningasnappulan toteutus.
  * @author anterova
  */
 public class Kuningas implements Nappula {
@@ -22,14 +22,27 @@ public class Kuningas implements Nappula {
         uhattu = false;
     }
     
+    /**
+     * Metodi muuttaa tiedon siitä, onko kuningas uhattu, eli voitaisiinko se
+     * syödä seuraavalla vuorolla.
+     */
     public void uhkaa() {
         uhattu = true;
     }
     
+    /**
+     * Metodi muuttaa tiedon siitä, onko kuningas uhattu, eli voitaisiinko se
+     * syödä seuraavalla vuorolla.
+     */
     public void suojaa() {
         uhattu = false;
     }
     
+    /**
+     * Metodi, jolla selvitetään, onko kuningas uhattu.
+     * @return totuusarvo siitä onko kuningas uhattu, eli voitaisiinko se syödä 
+     * seuraavalla vuorolla
+     */
     public boolean uhattu() {
         return uhattu;
     }
