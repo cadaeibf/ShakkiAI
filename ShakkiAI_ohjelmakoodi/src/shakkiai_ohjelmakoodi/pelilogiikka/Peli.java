@@ -13,26 +13,36 @@ import shakkiai_ohjelmakoodi.pelilogiikka.st.Siirtohallinta;
 public class Peli {
     private Kentta kentta;
     private int pelivuoro;
-    private Pelaaja pelaaja1;
-    private Pelaaja pelaaja2;
+    private Ihmispelaaja pelaaja1;
+    private Ihmispelaaja pelaaja2;
     private Siirtohallinta siirtohallinta;
     private boolean peliKaynnissa;
     
     public Peli() {
-        pelaaja1 = new Pelaaja(1);
-        pelaaja2 = new Pelaaja(2);
+        pelaaja1 = new Ihmispelaaja(1);
+        pelaaja2 = new Ihmispelaaja(2);
         kentta = new Kentta(pelaaja1, pelaaja2);
         pelivuoro = 1;
         siirtohallinta = new Siirtohallinta();
         peliKaynnissa = true;
     }
     
-    public void pelaaVuoro(int xa, int ya, int xl, int yl) {
-        if(siirtohallinta.tarkista(kentta, xa, ya, xl, yl)) {
-            kentta.teeSiirto(xa, ya, xl, yl);
-            tarkistaTilanne();
-            vaihdaPelivuoro();
-        } else System.out.println("Epäkelpo siirto!");
+    public void pelaaVuoro() {
+        while(true) {
+            System.out.println("\nPelaajan " + pelivuorossa().getPelaajaNro() + " vuoro\n");
+            Siirto siirto = pelivuorossa().valitseSiirto(kentta);
+            if(siirtohallinta.tarkista(kentta, pelivuoro, siirto.xAlku(), siirto.yAlku(), siirto.xLoppu(), siirto.yLoppu())) {
+                kentta.teeSiirto(siirto);
+                tarkistaTilanne();
+                vaihdaPelivuoro();
+                break;
+            } else System.out.println("Epäkelpo siirto!");
+        }
+    }
+    
+    private Pelaaja pelivuorossa() {
+        if(pelivuoro == 1) return pelaaja1;
+        else return pelaaja2;
     }
     
     private void vaihdaPelivuoro() {

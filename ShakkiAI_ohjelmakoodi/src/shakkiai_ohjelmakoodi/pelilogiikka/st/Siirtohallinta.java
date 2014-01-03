@@ -36,12 +36,13 @@ public class Siirtohallinta implements Siirrontarkastaja {
     }
 
     @Override
-    public boolean tarkista(Kentta kentta, int xa, int ya, int xl, int yl) {
+    public boolean tarkista(Kentta kentta, int pelaajaNumero, int xa, int ya, int xl, int yl) {
         if(epakelvotKoordinaatit(xa,xl,ya,yl)) return false;
         if(alkuJaLoppuKoordinaatitSamat(xa, ya, xl, yl)) return false;
         if(alkuKoordinaatitEivatOsoitaNappulaan(kentta, xa, ya)) return false;
+        if(kentta.nappulaKoordinaatissa(xa, ya).omistajanPelinumero() != pelaajaNumero) return false;
         
-        return siirtohallinta.get(kentta.nappulaKoordinaatissa(xa, ya).getClass()).tarkista(kentta, xa, ya, xl, yl);
+        return siirtohallinta.get(kentta.nappulaKoordinaatissa(xa, ya).getClass()).tarkista(kentta, pelaajaNumero, xa, ya, xl, yl);
     }
     
     private boolean alkuKoordinaatitEivatOsoitaNappulaan(Kentta kentta, int xa, int ya) {

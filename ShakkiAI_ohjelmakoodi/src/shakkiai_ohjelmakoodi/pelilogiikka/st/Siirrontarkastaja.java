@@ -21,6 +21,6 @@ public interface Siirrontarkastaja {
      * @param yl siirron maaliruudun sarakenumero
      * @return totuusarvo siitä, onko siirto laillinen
      */
-    public boolean tarkista(Kentta kentta, int xa, int ya, int xl, int yl);
+    public boolean tarkista(Kentta kentta, int pelaajaNumero, int xa, int ya, int xl, int yl);
     
 }

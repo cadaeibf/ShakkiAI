@@ -12,7 +12,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Sotilas;
-import shakkiai_ohjelmakoodi.pelilogiikka.Pelaaja;
+import shakkiai_ohjelmakoodi.pelilogiikka.Ihmispelaaja;
 
 /**
  *
@@ -34,7 +34,7 @@ public class SotilasTests {
     
     @Before
     public void setUp() {
-        sotilas = new Sotilas(new Pelaaja(1));
+        sotilas = new Sotilas(new Ihmispelaaja(1));
     }
     
     @After

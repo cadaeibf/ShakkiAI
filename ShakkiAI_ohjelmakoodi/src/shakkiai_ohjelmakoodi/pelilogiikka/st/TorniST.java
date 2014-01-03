@@ -17,7 +17,7 @@ public class TorniST implements Siirrontarkastaja {
     }
 
     @Override
-    public boolean tarkista(Kentta kentta, int xa, int ya, int xl, int yl) {
+    public boolean tarkista(Kentta kentta, int pelaajaNumero, int xa, int ya, int xl, int yl) {
         Torni torni = (Torni) kentta.haeRuutu(xa, ya).getNappula();
         
         if(maaliRuudussaOmanPelaajanNappula(torni.omistajanPelinumero(), kentta, xl, yl)) return false;

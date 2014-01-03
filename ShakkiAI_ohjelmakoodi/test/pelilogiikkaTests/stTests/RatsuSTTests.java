@@ -12,7 +12,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import shakkiai_ohjelmakoodi.pelilogiikka.Kentta;
 import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Ratsu;
-import shakkiai_ohjelmakoodi.pelilogiikka.Pelaaja;
+import shakkiai_ohjelmakoodi.pelilogiikka.Ihmispelaaja;
 import shakkiai_ohjelmakoodi.pelilogiikka.st.RatsuST;
 
 /**
@@ -37,7 +37,7 @@ public class RatsuSTTests {
     @Before
     public void setUp() {
         ratsuSt = new RatsuST();
-        kentta = new Kentta(new Pelaaja(1), new Pelaaja(2));
+        kentta = new Kentta(new Ihmispelaaja(1), new Ihmispelaaja(2));
     }
     
     @After
@@ -46,17 +46,17 @@ public class RatsuSTTests {
     
     @Test
     public void sallittuSiirto() {
-        assertTrue(ratsuSt.tarkista(kentta, 0, 1, 2, 0));
+        assertTrue(ratsuSt.tarkista(kentta, 1, 0, 1, 2, 0));
     }
     
     @Test
     public void ratsuEiHypiOmienPaalle() {
-        assertFalse(ratsuSt.tarkista(kentta, 0, 1, 1, 3));
+        assertFalse(ratsuSt.tarkista(kentta, 1, 0, 1, 1, 3));
     }
     
     @Test
     public void ratsuHyppiiVihollistenPaalle() {
-        kentta.haeRuutu(4, 0).setNappula(new Ratsu(new Pelaaja(1)));
-        assertTrue(ratsuSt.tarkista(kentta, 4, 0, 6, 1));
+        kentta.haeRuutu(4, 0).setNappula(new Ratsu(new Ihmispelaaja(1)));
+        assertTrue(ratsuSt.tarkista(kentta, 1, 4, 0, 6, 1));
     }
 }

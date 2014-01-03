@@ -16,7 +16,7 @@ public class RatsuST implements Siirrontarkastaja {
     }
 
     @Override
-    public boolean tarkista(Kentta kentta, int xa, int ya, int xl, int yl) {
+    public boolean tarkista(Kentta kentta, int pelaajaNumero, int xa, int ya, int xl, int yl) {
         if(epaKelvotKoordinaatit(xa, ya, xl, yl)) return false;
         if(maaliRuudussaOmanPelaajanNappula(kentta.nappulaKoordinaatissa(xa, ya).omistajanPelinumero(), kentta, xl, yl)) return false;
         
@@ -24,7 +24,7 @@ public class RatsuST implements Siirrontarkastaja {
     }
 
     private boolean epaKelvotKoordinaatit(int xa, int ya, int xl, int yl) {
-        return !( (xa-xl)*(xa-xl) + (ya-yl)*(ya-yl) == 5);
+        return !((xa-xl)*(xa-xl) + (ya-yl)*(ya-yl) == 5);
     }
 
     private boolean maaliRuudussaOmanPelaajanNappula(int omistajanPelinumero, Kentta kentta, int xl, int yl) {

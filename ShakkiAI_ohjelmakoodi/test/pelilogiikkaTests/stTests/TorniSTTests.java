@@ -12,7 +12,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import shakkiai_ohjelmakoodi.pelilogiikka.Kentta;
 import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Torni;
-import shakkiai_ohjelmakoodi.pelilogiikka.Pelaaja;
+import shakkiai_ohjelmakoodi.pelilogiikka.Ihmispelaaja;
 import shakkiai_ohjelmakoodi.pelilogiikka.st.TorniST;
 
 /**
@@ -37,7 +37,7 @@ public class TorniSTTests {
     @Before
     public void setUp() {
         torniSt = new TorniST();
-        kentta = new Kentta(new Pelaaja(1), new Pelaaja(2));
+        kentta = new Kentta(new Ihmispelaaja(1), new Ihmispelaaja(2));
     }
     
     @After
@@ -46,17 +46,17 @@ public class TorniSTTests {
     
     @Test
     public void torniEiHypiYliOmien() {
-        assertFalse(torniSt.tarkista(kentta, 0, 0, 3, 0));
+        assertFalse(torniSt.tarkista(kentta, 1, 0, 0, 3, 0));
     }
     
     @Test
     public void sallittuSiirto() {
-        kentta.haeRuutu(2, 2).setNappula(new Torni(new Pelaaja(1)));
-        assertTrue(torniSt.tarkista(kentta, 2, 2, 2, 4));
+        kentta.haeRuutu(2, 2).setNappula(new Torni(new Ihmispelaaja(1)));
+        assertTrue(torniSt.tarkista(kentta, 1, 2, 2, 2, 4));
     }
     
     @Test
     public void torniEiMeneOmienPaalle() {
-        assertFalse(torniSt.tarkista(kentta, 0, 0, 1, 0));
+        assertFalse(torniSt.tarkista(kentta, 1, 0, 0, 1, 0));
     }
 }

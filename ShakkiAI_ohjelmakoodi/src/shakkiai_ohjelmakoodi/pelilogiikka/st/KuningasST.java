@@ -16,7 +16,7 @@ public class KuningasST implements Siirrontarkastaja {
     }
 
     @Override
-    public boolean tarkista(Kentta kentta, int xa, int ya, int xl, int yl) {
+    public boolean tarkista(Kentta kentta, int pelaajaNumero, int xa, int ya, int xl, int yl) {
         if(epaKelvotKoordinaatit(xa,ya,xl,yl)) return false;
         if(maaliruudussaOmia(kentta.nappulaKoordinaatissa(xa, ya).omistajanPelinumero(), kentta, xl, yl)) return false;
         if(kentta.ruutuUhattu(kentta.nappulaKoordinaatissa(xa, ya).omistajanPelinumero(), xl, yl)) return false;

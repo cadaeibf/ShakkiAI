@@ -11,7 +11,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import shakkiai_ohjelmakoodi.pelilogiikka.Kentta;
-import shakkiai_ohjelmakoodi.pelilogiikka.Pelaaja;
+import shakkiai_ohjelmakoodi.pelilogiikka.Ihmispelaaja;
 import shakkiai_ohjelmakoodi.pelilogiikka.st.Siirtohallinta;
 
 /**
@@ -36,7 +36,7 @@ public class SiirtohallintaTests {
     @Before
     public void setUp() {
         siirtohallinta = new Siirtohallinta();
-        kentta = new Kentta(new Pelaaja(1), new Pelaaja(2));
+        kentta = new Kentta(new Ihmispelaaja(1), new Ihmispelaaja(2));
     }
     
     @After
@@ -45,17 +45,17 @@ public class SiirtohallintaTests {
     
     @Test
     public void epakelpoKoordinaatti() {
-        assertFalse(siirtohallinta.tarkista(kentta, -1, 42, 3, 5));
+        assertFalse(siirtohallinta.tarkista(kentta, 1, -1, 42, 3, 5));
     }
     
     @Test
     public void sotilasTesti1() {
-        assertTrue(siirtohallinta.tarkista(kentta, 1, 1, 2, 1));
+        assertTrue(siirtohallinta.tarkista(kentta, 1, 1, 1, 2, 1));
     }
     
     @Test
     public void torniTesti1() {
-        assertFalse(siirtohallinta.tarkista(kentta, 0, 0, 2, 0));
+        assertFalse(siirtohallinta.tarkista(kentta, 1, 0, 0, 2, 0));
     }
     
 }

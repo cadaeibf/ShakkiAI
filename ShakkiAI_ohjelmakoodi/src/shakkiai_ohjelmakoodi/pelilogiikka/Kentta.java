@@ -44,14 +44,11 @@ public class Kentta {
     
     /**
      * Suorittaa annetun siirron.
-     * @param xa alkuruudun rivinumero
-     * @param ya alkuruudun sarakenumero
-     * @param xl loppuruudun rivinumero
-     * @param yl loppuruudun sarakenumero
+     * @param siirto suoritettava siirto
      */
-    public void teeSiirto(int xa, int ya, int xl, int yl) {
-        kentta[xl][yl].setNappula(kentta[xa][ya].getNappula());
-        kentta[xa][ya].poistaNappula();
+    public void teeSiirto(Siirto siirto) {
+        kentta[siirto.xLoppu()][siirto.yLoppu()].setNappula(kentta[siirto.xAlku()][siirto.yAlku()].getNappula());
+        kentta[siirto.xAlku()][siirto.yAlku()].poistaNappula();
     }
     
     /**
@@ -130,9 +127,15 @@ public class Kentta {
     }
 
     private void asetaKuninkaat(Pelaaja pelaaja1, Pelaaja pelaaja2) {
-        kentta[0][3].setNappula(new Kuningas(pelaaja1));
+        Kuningas kuningas;
         
-        kentta[7][3].setNappula(new Kuningas(pelaaja2));
+        kuningas = new Kuningas(pelaaja1);
+        kentta[0][3].setNappula(kuningas);
+        pelaaja1.setKuningas(kuningas);
+        
+        kuningas = new Kuningas(pelaaja2);
+        kentta[7][3].setNappula(kuningas);
+        pelaaja2.setKuningas(kuningas);
     }
     
     /**
@@ -144,6 +147,8 @@ public class Kentta {
      */
     public boolean ruutuUhattu(int pelaajaNumero, int x, int y) {
         if(suoraLinjaUhattu(pelaajaNumero, x, y)) return true;
+        if(diagonaaliUhattu(pelaajaNumero,x,y)) return true;
+        if(ratsujaUhkaa(pelaajaNumero, x, y)) return true;
         
         return false;
     }
@@ -157,9 +162,18 @@ public class Kentta {
         return false;
     }
     
+    private boolean diagonaaliUhattu(int pelaajaNumero, int x, int y) {
+        if(vasenYlaUhattu(pelaajaNumero, x, y)) return true;
+        if(oikeaYlaUhattu(pelaajaNumero, x, y)) return true;
+        if(oikeaAlaUhattu(pelaajaNumero, x, y)) return true;
+        if(vasenAlaUhattu(pelaajaNumero, x, y)) return true;
+        
+        return false;
+    }
+    
     private boolean uhattuAlhaalta(int pelaajaNumero, int x, int y) {
         int i = 1;
-        while(x+1 < 8 && kentta[x+i][ y].onTyhja()) i++;
+        while(x+1 < 8 && kentta[x+i][y].onTyhja()) i++;
         
         if(x+i == 8) return false;
         
@@ -174,9 +188,9 @@ public class Kentta {
     
     private boolean uhattuYlhaalta(int pelaajaNumero, int x, int y) {
         int i = 1;
-        while(x-i >= 0 && kentta[x+i][ y].onTyhja()) i++;
+        while(x-i >= 0 && kentta[x-i][y].onTyhja()) i++;
         
-        if(x-i == 0) return false;
+        if(x-i < 0) return false;
         
         if(kentta[x-i][y].getNappula().omistajanPelinumero() != pelaajaNumero) {
             if(i == 1 && kentta[x-i][y].getNappula().getClass() == new Kuningas().getClass()) return true;
@@ -204,14 +218,131 @@ public class Kentta {
     
     private boolean uhattuVasemmalta(int pelaajaNumero, int x, int y) {
         int i = 1;
-        while(y-i >= 0 && kentta[x][y+i].onTyhja()) i++;
+        while(y-i >= 0 && kentta[x][y-i].onTyhja()) i++;
         
-        if(y-i == 0) return false;
+        if(y-i == -1) return false;
         
         if(kentta[x][y-i].getNappula().omistajanPelinumero() != pelaajaNumero) {
-            if(i == 1 && kentta[x][y+i].getNappula().getClass() == new Kuningas().getClass()) return true;
+            if(i == 1 && kentta[x][y-i].getNappula().getClass() == new Kuningas().getClass()) return true;
             if(kentta[x][y-i].getNappula().getClass() == new Kuningatar().getClass()) return true;
             if(kentta[x][y-i].getNappula().getClass() == new Torni().getClass()) return true;
+        }
+        
+        return false;
+    }
+
+    private boolean vasenYlaUhattu(int pelaajaNumero, int x, int y) {
+        int i = 1;
+        while(x-i >= 0 && y-i >= 0 && kentta[x-i][y-i].onTyhja()) i++;
+        
+        if(x-i == -1 || y-i == -1) return false;
+        
+        if(kentta[x-i][y-i].getNappula().omistajanPelinumero() != pelaajaNumero) {
+            
+            if(kentta[x-i][y-i].getNappula().getClass() == new Kuningatar().getClass()) return true;    // Kunigatartarkistus
+            if(kentta[x-i][y-i].getNappula().getClass() == new Lahetti().getClass()) return true;       // Lähettitarkistus
+            if(i == i && kentta[x-i][y-i].getNappula().getClass() == new Kuningas().getClass()) return true;    // Kuningastarkistus
+            
+            if(i == 1 && kentta[x-i][y-i].getNappula().getClass() == new Sotilas().getClass()) {        // Sotilastarkistus
+                if(kentta[x-i][y-i].getNappula().omistajanPelinumero() == 1
+                        && pelaajaNumero == 2) return true;
+            }
+        }
+        
+        return false;
+    }
+
+    private boolean oikeaAlaUhattu(int pelaajaNumero, int x, int y) {
+        int i = 1;
+        while(x+i < 8 && y+i < 8 && kentta[x+i][y+i].onTyhja()) i++;
+        
+        if(x+i == 8 || y+i == 8) return false;
+        
+        if(kentta[x+i][y+i].getNappula().omistajanPelinumero() != pelaajaNumero) {
+            
+            if(kentta[x+i][y+i].getNappula().getClass() == new Kuningatar().getClass()) return true;    // Kunigatartarkistus
+            if(kentta[x+i][y+i].getNappula().getClass() == new Lahetti().getClass()) return true;       // Lähettitarkistus
+            if(i == i && kentta[x+i][y+i].getNappula().getClass() == new Kuningas().getClass()) return true;    // Kuningastarkistus
+            
+            if(i == 1 && kentta[x+i][y+i].getNappula().getClass() == new Sotilas().getClass()) {        // Sotilastarkistus
+                if(kentta[x+i][y+i].getNappula().omistajanPelinumero() == 2
+                        && pelaajaNumero == 1) return true;
+            }
+        }
+        
+        return false;
+    }
+
+    private boolean oikeaYlaUhattu(int pelaajaNumero, int x, int y) {
+        int i = 1;
+        while(x-i >= 0 && y+i < 8 && kentta[x-i][y+i].onTyhja()) i++;
+        
+        if(x-i == -1 || y+i == 8) return false;
+        
+        if(kentta[x-i][y+i].getNappula().omistajanPelinumero() != pelaajaNumero) {
+            
+            if(kentta[x-i][y+i].getNappula().getClass() == new Kuningatar().getClass()) return true;    // Kunigatartarkistus
+            if(kentta[x-i][y+i].getNappula().getClass() == new Lahetti().getClass()) return true;       // Lähettitarkistus
+            if(i == i && kentta[x-i][y+i].getNappula().getClass() == new Kuningas().getClass()) return true;    // Kuningastarkistus
+            
+            if(i == 1 && kentta[x-i][y+i].getNappula().getClass() == new Sotilas().getClass()) {        // Sotilastarkistus
+                if(kentta[x-i][y+i].getNappula().omistajanPelinumero() == 1
+                        && pelaajaNumero == 2) return true;
+            }
+        }
+        
+        return false;
+    }
+
+    private boolean vasenAlaUhattu(int pelaajaNumero, int x, int y) {
+        int i = 1;
+        while(x+i < 8 && y-i >= 0 && kentta[x+i][y-i].onTyhja()) i++;
+        
+        if(x+i == 8 || y-i == -1) return false;
+        
+        if(kentta[x+i][y-i].getNappula().omistajanPelinumero() != pelaajaNumero) {
+            
+            if(kentta[x+i][y-i].getNappula().getClass() == new Kuningatar().getClass()) return true;    // Kunigatartarkistus
+            if(kentta[x+i][y-i].getNappula().getClass() == new Lahetti().getClass()) return true;       // Lähettitarkistus
+            if(i == i && kentta[x+i][y-i].getNappula().getClass() == new Kuningas().getClass()) return true;    // Kuningastarkistus
+            
+            if(i == 1 && kentta[x+i][y-i].getNappula().getClass() == new Sotilas().getClass()) {        // Sotilastarkistus
+                if(kentta[x+i][y-i].getNappula().omistajanPelinumero() == 2
+                        && pelaajaNumero == 1) return true;
+            }
+        }
+        
+        return false;
+    }
+
+    private boolean ratsujaUhkaa(int pelaajaNumero, int x, int y) {
+        Ratsu ratsu = new Ratsu();
+        Nappula cond;
+        
+        if(x+2 < 8 && y+1 < 8 && !kentta[x+2][y+1].onTyhja()) {
+            cond = kentta[x+2][y+1].getNappula();
+            if(cond.omistajanPelinumero() != pelaajaNumero && cond.getClass() == ratsu.getClass()) return true;
+        } if(x+2 < 8 && y-1 >= 0 && !kentta[x+2][y-1].onTyhja()) {
+            cond = kentta[x+2][y-1].getNappula();
+            if(cond.omistajanPelinumero() != pelaajaNumero && cond.getClass() == ratsu.getClass()) return true;
+        } if(x-2 >= 0 && y+1 < 8 && !kentta[x-2][y+1].onTyhja()) {
+            cond = kentta[x-2][y+1].getNappula();
+            if(cond.omistajanPelinumero() != pelaajaNumero && cond.getClass() == ratsu.getClass()) return true;
+        } if(x-2 >= 0 && y-1 >= 0 && !kentta[x-2][y-1].onTyhja()) {
+            cond = kentta[x-2][y-1].getNappula();
+            if(cond.omistajanPelinumero() != pelaajaNumero && cond.getClass() == ratsu.getClass()) return true;
+        } if(x+1 < 8 && y+2 < 8 && !kentta[x+1][y+2].onTyhja()) {
+            cond = kentta[x+1][y+2].getNappula();
+            if(cond.omistajanPelinumero() != pelaajaNumero && cond.getClass() == ratsu.getClass()) return true;
+        } if(x+1 < 8 && y-2 >= 0 && !kentta[x+1][y-2].onTyhja()) {
+            cond = kentta[x+1][y-2].getNappula();
+            if(cond.omistajanPelinumero() != pelaajaNumero && cond.getClass() == ratsu.getClass()) return true;
+        } if(x-1 >= 0 && y+2 < 8 && !kentta[x-1][y+2].onTyhja()) {
+            cond = kentta[x-1][y+2].getNappula();
+            if(cond.omistajanPelinumero() != pelaajaNumero && cond.getClass() == ratsu.getClass()) return true;
+        } if(x-1 >= 0 && y-2 >= 0 && !kentta[x-1][y-2].onTyhja()) {
+            cond = kentta[x-1][y-2].getNappula();
+            if(cond.omistajanPelinumero() != pelaajaNumero && cond.getClass() == ratsu.getClass()) return true;
         }
         
         return false;

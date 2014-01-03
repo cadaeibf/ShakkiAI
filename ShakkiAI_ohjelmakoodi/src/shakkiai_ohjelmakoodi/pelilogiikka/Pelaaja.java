@@ -4,20 +4,24 @@
  */
 package shakkiai_ohjelmakoodi.pelilogiikka;
 
+import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Kuningas;
+
 /**
- * Luokka ns. ihmispelaajalle.
+ * Rajapinta pelaajille, jotka voivat olla joko ihmispelaajia, tai shakkibotteja.
  * @author anterova
  */
-public class Pelaaja {
-    private int pelaajaNro;
+public interface Pelaaja {
     
-    public Pelaaja(int pelaajaNro) {
-        this.pelaajaNro = pelaajaNro;
-    }
-
-    public int getPelaajaNro() {
-        return pelaajaNro;
-    }
+    /**
+     * Metodi pelaajanumeron selvittämiseksi
+     * @return kyseisen pelaajan pelaajanumero
+     */
+    public int getPelaajaNro();
     
+    public void setKuningas(Kuningas kuningas);
+    
+    public Kuningas getKuningas();
+    
+    public Siirto valitseSiirto(Kentta kentta);
     
 }

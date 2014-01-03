@@ -18,7 +18,7 @@ public class LahettiST implements Siirrontarkastaja {
     
     
     @Override
-    public boolean tarkista(Kentta kentta, int xa, int ya, int xl, int yl) {
+    public boolean tarkista(Kentta kentta, int pelaajaNumero, int xa, int ya, int xl, int yl) {
         if(epaKelvotKoordinaatit(xa, ya, xl, yl)) return false;
         if(reitillaNappuloita(kentta, xa, ya, xl, yl)) return false;
         if(maaliruudussaOmia(kentta.nappulaKoordinaatissa(xa, ya).omistajanPelinumero(), kentta, xl, yl)) return false;

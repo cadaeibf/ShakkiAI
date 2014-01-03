@@ -16,7 +16,7 @@ public class SotilasST implements Siirrontarkastaja {
     public SotilasST() {}
 
     @Override
-    public boolean tarkista(Kentta kentta, int xa, int ya, int xl, int yl) {
+    public boolean tarkista(Kentta kentta, int pelaajaNumero, int xa, int ya, int xl, int yl) {
         Sotilas sotilas = (Sotilas) kentta.nappulaKoordinaatissa(xa, ya);
         
         if(sotilas.omistajanPelinumero() == 1) {
