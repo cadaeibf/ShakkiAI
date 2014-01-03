@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package shakki_ohjelmakoodi.util;
+package shakkiai_ohjelmakoodi.util;
 
 import java.util.Scanner;
 

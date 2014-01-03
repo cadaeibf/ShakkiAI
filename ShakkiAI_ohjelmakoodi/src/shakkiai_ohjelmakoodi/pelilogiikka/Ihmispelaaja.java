@@ -4,7 +4,7 @@
  */
 package shakkiai_ohjelmakoodi.pelilogiikka;
 
-import shakki_ohjelmakoodi.util.Lukija;
+import shakkiai_ohjelmakoodi.util.Lukija;
 import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Kuningas;
 
 /**
