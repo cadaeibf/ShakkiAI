@@ -35,5 +35,10 @@ public class Torni implements Nappula {
     public String toString() {
         return "To" + pelaaja.getPelaajaNro();
     }
+
+    @Override
+    public int arvo() {
+        return 5;
+    }
     
 }

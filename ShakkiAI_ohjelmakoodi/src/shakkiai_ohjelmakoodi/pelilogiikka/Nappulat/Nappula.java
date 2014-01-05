@@ -23,4 +23,6 @@ public interface Nappula {
      * @return kyseisen nappulan omistajan pelinumeron.
      */
     public int omistajanPelinumero();
+    
+    public int arvo();
 }

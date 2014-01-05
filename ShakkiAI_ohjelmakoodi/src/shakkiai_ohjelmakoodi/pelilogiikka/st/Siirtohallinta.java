@@ -6,6 +6,7 @@ package shakkiai_ohjelmakoodi.pelilogiikka.st;
 
 import java.util.HashMap;
 import shakkiai_ohjelmakoodi.pelilogiikka.Kentta;
+import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Kuningas;
 import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Kuningatar;
 import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Lahetti;
 import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Ratsu;
@@ -33,6 +34,7 @@ public class Siirtohallinta implements Siirrontarkastaja {
         siirtohallinta.put(new Ratsu().getClass(), new RatsuST());
         siirtohallinta.put(new Lahetti().getClass(), new LahettiST());
         siirtohallinta.put(new Kuningatar().getClass(), new KuningatarST());
+        siirtohallinta.put(new Kuningas().getClass(), new KuningasST());
     }
 
     @Override

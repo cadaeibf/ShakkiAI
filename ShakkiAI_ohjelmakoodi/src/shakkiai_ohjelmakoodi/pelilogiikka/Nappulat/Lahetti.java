@@ -34,5 +34,10 @@ public class Lahetti implements Nappula {
     public String toString() {
         return "La" + pelaaja.getPelaajaNro();
     }
+
+    @Override
+    public int arvo() {
+        return 3;
+    }
     
 }

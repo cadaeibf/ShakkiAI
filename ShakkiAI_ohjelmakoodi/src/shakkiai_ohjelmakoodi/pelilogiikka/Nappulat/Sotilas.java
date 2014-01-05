@@ -54,5 +54,10 @@ public class Sotilas implements Nappula {
     public String toString() {
         return "So" + pelaaja.getPelaajaNro();
     }
+
+    @Override
+    public int arvo() {
+        return 1;
+    }
     
 }

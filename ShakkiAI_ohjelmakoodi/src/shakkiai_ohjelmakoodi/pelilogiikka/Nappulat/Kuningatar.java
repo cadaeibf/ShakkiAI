@@ -34,5 +34,10 @@ public class Kuningatar implements Nappula {
     public String toString() {
         return "Qn" + pelaaja.getPelaajaNro();
     }
+
+    @Override
+    public int arvo() {
+        return 9;
+    }
     
 }

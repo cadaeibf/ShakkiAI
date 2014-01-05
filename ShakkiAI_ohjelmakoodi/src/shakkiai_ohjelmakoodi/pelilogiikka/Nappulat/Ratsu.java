@@ -34,5 +34,10 @@ public class Ratsu implements Nappula {
     public String toString() {
         return "Ra" + pelaaja.getPelaajaNro();
     }
+
+    @Override
+    public int arvo() {
+        return 3;
+    }
     
 }

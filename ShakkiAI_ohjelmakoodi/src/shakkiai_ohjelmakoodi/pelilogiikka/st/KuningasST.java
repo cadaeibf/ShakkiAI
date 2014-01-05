@@ -19,7 +19,7 @@ public class KuningasST implements Siirrontarkastaja {
     public boolean tarkista(Kentta kentta, int pelaajaNumero, int xa, int ya, int xl, int yl) {
         if(epaKelvotKoordinaatit(xa,ya,xl,yl)) return false;
         if(maaliruudussaOmia(kentta.nappulaKoordinaatissa(xa, ya).omistajanPelinumero(), kentta, xl, yl)) return false;
-        if(kentta.ruutuUhattu(kentta.nappulaKoordinaatissa(xa, ya).omistajanPelinumero(), xl, yl)) return false;
+        if(kentta.ruutuUhattu(pelaajaNumero, xl, yl)) return false;
         
         return true;
     }
@@ -35,6 +35,7 @@ public class KuningasST implements Siirrontarkastaja {
     }
 
     private boolean maaliruudussaOmia(int omistajanPelinumero, Kentta kentta, int xl, int yl) {
+        if(kentta.nappulaKoordinaatissa(xl, yl) == null) return false;
         return omistajanPelinumero == kentta.nappulaKoordinaatissa(xl, yl).omistajanPelinumero();
     }
     

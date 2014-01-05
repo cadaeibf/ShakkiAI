@@ -51,6 +51,12 @@ public class KuningasSTTests {
     }
     
     @Test
+    public void laillinenSiirto() {
+        kentta.haeRuutu(2, 2).setNappula(new Kuningas(pelaaja1));
+        assertTrue(kuningasSt.tarkista(kentta, 1, 2, 2, 3, 2));
+    }
+    
+    @Test
     public void kuningasEiAstuUhattuunRuutuun1() {
         kentta.haeRuutu(4, 4).setNappula(new Kuningas(pelaaja1));
         assertFalse(kuningasSt.tarkista(kentta, 1, 4, 4, 5, 4));

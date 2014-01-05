@@ -31,7 +31,7 @@ public class Ihmispelaaja implements Pelaaja {
     }
 
     @Override
-    public Siirto valitseSiirto(Kentta kentta) {
+    public Siirto teeSiirto(Kentta kentta) {
         System.out.println("Mistä:");
         System.out.print("\tx: ");
         int xa = lukija.lueKoordinaatti("x");

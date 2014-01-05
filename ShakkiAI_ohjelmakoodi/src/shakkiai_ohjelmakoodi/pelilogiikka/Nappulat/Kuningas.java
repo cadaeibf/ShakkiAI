@@ -61,5 +61,10 @@ public class Kuningas implements Nappula {
     public String toString() {
         return "Kg" + pelaaja.getPelaajaNro();
     }
+
+    @Override
+    public int arvo() {
+        return 0;
+    }
     
 }

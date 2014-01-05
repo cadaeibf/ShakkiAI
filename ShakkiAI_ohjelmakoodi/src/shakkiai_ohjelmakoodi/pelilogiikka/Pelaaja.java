@@ -22,6 +22,6 @@ public interface Pelaaja {
     
     public Kuningas getKuningas();
     
-    public Siirto valitseSiirto(Kentta kentta);
+    public Siirto teeSiirto(Kentta kentta);
     
 }
