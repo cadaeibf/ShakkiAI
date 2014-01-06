@@ -1,2 +1,3 @@
 ShakkiAI
 ========
+Shakkitekoäly
