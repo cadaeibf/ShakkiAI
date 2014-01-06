@@ -88,7 +88,7 @@ public class Nappulahallinta {
     
     /**
      * Metodi hakee nappulahallinnasta seuraavan nappulan koordinaatit
-     * @return 
+     * @return seuraavan nappulan koordinaatit
      */
     public int[] seuraavanKoordinaatit() {
         int[] seuraavanKoordinaatit = new int[2];
