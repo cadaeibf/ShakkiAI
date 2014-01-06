@@ -14,6 +14,7 @@ import shakkiai_ohjelmakoodi.pelilogiikka.Kentta;
 public class Nappulahallinta {
     private int peliNro;
     private int[][] koordinaatit;
+    private Siirtokirjanpito siirtohallinta;
     private int osoitin;
     
     public Nappulahallinta(int peliNro) {
@@ -22,6 +23,7 @@ public class Nappulahallinta {
         osoitin = 0;
         if(peliNro == 1) keraaValkoiset();
         else keraaMustat();
+        siirtohallinta = new Siirtokirjanpito(peliNro);
     }
 
     private void keraaValkoiset() {
