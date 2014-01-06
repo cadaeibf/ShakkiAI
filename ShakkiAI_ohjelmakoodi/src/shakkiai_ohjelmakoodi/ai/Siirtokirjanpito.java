@@ -4,8 +4,8 @@
  */
 package shakkiai_ohjelmakoodi.ai;
 
+import shakkiai_ohjelmakoodi.util.KoordinaattiJono;
 import shakkiai_ohjelmakoodi.util.KoordinaattiSolmu;
-import shakkiai_ohjelmakoodi.util.LinkitettyKoordinaattiLista;
 
 /**
  * Luokka pitää kirjaa Nappulahallinnan nappuloiden mahdollisista siirroista 
@@ -14,14 +14,16 @@ import shakkiai_ohjelmakoodi.util.LinkitettyKoordinaattiLista;
  * @author anterova
  */
 public class Siirtokirjanpito {
-    private LinkitettyKoordinaattiLista[] siirtokirjanpito;
-    private int osoitin;
+    private KoordinaattiJono[] siirtokirjanpito;
+    private KoordinaattiSolmu osoitin;
     
     public Siirtokirjanpito(int pelaajaNro) {
-        siirtokirjanpito = new LinkitettyKoordinaattiLista[16];
-        osoitin = 0;
+        siirtokirjanpito = new KoordinaattiJono[16];
         if(pelaajaNro == 1) keraaValkoisenSiirrot();
         else keraaMustanSiirrot();
+        for (int i = 0; i < 16; i++) {
+            siirtokirjanpito[i] = new KoordinaattiJono();
+        }
     }
 
     private void keraaValkoisenSiirrot() {
@@ -51,6 +53,18 @@ public class Siirtokirjanpito {
         siirtokirjanpito[9].lisaa(new KoordinaattiSolmu(5, 2));
         siirtokirjanpito[14].lisaa(new KoordinaattiSolmu(5, 5));
         siirtokirjanpito[14].lisaa(new KoordinaattiSolmu(5, 7));
+    }
+    
+    /**
+     * Metodi selvittää seuraavan mahdollisen siirron maalikoordinaatit annetulle
+     * pelinappulalle
+     * @param nappulanIndeksi annetun pelinappulan indeksi taulukossa
+     * @return seuraavan mahdollisen siirron maalikoodinaatit tai null, jos seuraavaa
+     * mahdollista siirtoa ei ole
+     */
+    public int[] seuraavatKoodinaatit(int nappulanIndeksi) {
+        if(siirtokirjanpito[nappulanIndeksi].tyhja()) return null;
+        return siirtokirjanpito[nappulanIndeksi].seuraava().koordinaatit();
     }
     
 }

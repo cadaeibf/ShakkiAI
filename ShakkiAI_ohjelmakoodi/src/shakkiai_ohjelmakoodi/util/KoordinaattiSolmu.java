@@ -9,13 +9,13 @@ package shakkiai_ohjelmakoodi.util;
  * @author anterova
  */
 public class KoordinaattiSolmu {
-    private int[] koordinaatti;
+    private int[] koordinaatit;
     private KoordinaattiSolmu seuraava;
 
     public KoordinaattiSolmu(int x, int y) {
-        koordinaatti = new int[2];
-        koordinaatti[0] = x;
-        koordinaatti[1] = y;
+        koordinaatit = new int[2];
+        koordinaatit[0] = x;
+        koordinaatit[1] = y;
     }
     
     public void setSeuraava(KoordinaattiSolmu seuraava) {
@@ -24,6 +24,10 @@ public class KoordinaattiSolmu {
     
     public KoordinaattiSolmu seuraava() {
         return seuraava;
+    }
+    
+    public int[] koordinaatit() {
+        return this.koordinaatit;
     }
     
 }
