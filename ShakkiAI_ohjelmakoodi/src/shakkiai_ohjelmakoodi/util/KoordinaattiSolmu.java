@@ -18,7 +18,7 @@ public class KoordinaattiSolmu {
         koordinaatit[1] = y;
     }
     
-    public void setSeuraava(KoordinaattiSolmu seuraava) {
+    public void asetaSeuraava(KoordinaattiSolmu seuraava) {
         this.seuraava = seuraava;
     }
     

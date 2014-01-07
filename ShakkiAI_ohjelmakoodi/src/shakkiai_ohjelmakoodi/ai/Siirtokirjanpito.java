@@ -4,6 +4,8 @@
  */
 package shakkiai_ohjelmakoodi.ai;
 
+import shakkiai_ohjelmakoodi.pelilogiikka.Kentta;
+import shakkiai_ohjelmakoodi.pelilogiikka.st.Siirtohallinta;
 import shakkiai_ohjelmakoodi.util.KoordinaattiJono;
 import shakkiai_ohjelmakoodi.util.KoordinaattiSolmu;
 
@@ -16,6 +18,7 @@ import shakkiai_ohjelmakoodi.util.KoordinaattiSolmu;
 public class Siirtokirjanpito {
     private KoordinaattiJono[] siirtokirjanpito;
     private KoordinaattiSolmu osoitin;
+    private Siirtohallinta siirtohallinta;
     
     public Siirtokirjanpito(int pelaajaNro) {
         siirtokirjanpito = new KoordinaattiJono[16];
@@ -24,6 +27,7 @@ public class Siirtokirjanpito {
         for (int i = 0; i < 16; i++) {
             siirtokirjanpito[i] = new KoordinaattiJono();
         }
+        siirtohallinta = new Siirtohallinta();
     }
 
     private void keraaValkoisenSiirrot() {
@@ -65,6 +69,10 @@ public class Siirtokirjanpito {
     public int[] seuraavatKoodinaatit(int nappulanIndeksi) {
         if(siirtokirjanpito[nappulanIndeksi].tyhja()) return null;
         return siirtokirjanpito[nappulanIndeksi].seuraava().koordinaatit();
+    }
+    
+    public void paivita(Nappulahallinta nappulahallinta, Kentta kentta) {
+        
     }
     
 }

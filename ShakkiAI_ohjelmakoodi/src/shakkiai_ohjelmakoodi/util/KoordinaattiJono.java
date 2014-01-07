@@ -21,7 +21,7 @@ public class KoordinaattiJono {
         }
         KoordinaattiSolmu conductor = seuraava;
         while(conductor.seuraava() != null) conductor = conductor.seuraava();
-        conductor.setSeuraava(lisattava);
+        conductor.asetaSeuraava(lisattava);
     }
     
     public KoordinaattiSolmu seuraava() {

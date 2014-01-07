@@ -5,6 +5,7 @@
 package shakkiai_ohjelmakoodi.ai;
 
 import shakkiai_ohjelmakoodi.pelilogiikka.Kentta;
+import shakkiai_ohjelmakoodi.util.SiirrettavaPino;
 
 /**
  * Luokka pitää kirjaa pelin toisen osapuolen pelinappuloiden koordinaateista
@@ -14,16 +15,14 @@ import shakkiai_ohjelmakoodi.pelilogiikka.Kentta;
 public class Nappulahallinta {
     private int peliNro;
     private int[][] koordinaatit;
-    private Siirtokirjanpito siirtohallinta;
-    private int osoitin;
+    private SiirrettavaPino siirrettavat;
+    
     
     public Nappulahallinta(int peliNro) {
         this.peliNro = peliNro;
         koordinaatit = new int[16][2];
-        osoitin = 0;
         if(peliNro == 1) keraaValkoiset();
         else keraaMustat();
-        siirtohallinta = new Siirtokirjanpito(peliNro);
     }
 
     private void keraaValkoiset() {
@@ -83,34 +82,6 @@ public class Nappulahallinta {
         }
     }
     
-    private void kasvataOsoitinta() {
-        osoitin++;
-        if(osoitin == 16) osoitin = 0;
-    }
-    
-    /**
-     * Metodi hakee nappulahallinnasta seuraavan nappulan koordinaatit
-     * @return seuraavan nappulan koordinaatit
-     */
-    public int[] seuraavanKoordinaatit() {
-        int[] seuraavanKoordinaatit = new int[2];
-        
-        while(true) {
-            seuraavanKoordinaatit[0] = this.koordinaatit[osoitin][0];
-            
-            if(seuraavanKoordinaatit[0] != -1) {
-                seuraavanKoordinaatit[1] = this.koordinaatit[osoitin][1];
-                kasvataOsoitinta();
-                break;
-            }
-            
-            kasvataOsoitinta();
-            if(osoitin == 0) break;
-        }
-        
-        return seuraavanKoordinaatit;
-    }
-    
     /**
      * Metodi pelinappuloiden suhteellisen yhteisarvon selvittämiseksi.
      * @param kentta nykyinen pelitilanne
@@ -128,7 +99,48 @@ public class Nappulahallinta {
         return arvo;
     }
     
+    /**
+     * Metodi vaihtaa annetut koordinaatit nappulahallinnassa annetuiksi.
+     * @param xa vaihdettavan nappulan x-koordinaatti ennen vaihdosta
+     * @param ya vaihdettavan nappulan y-koordinaatti ennen vaihdosta
+     * @param xl vaihdettavan nappulan x-koordinaatti vaihdoksen jälkeen
+     * @param yl vaihdettavan nappulan y-koordinaatti vaihdoksen jälkeen
+     */
+    public void vaihda(int xa, int ya, int xl, int yl) {
+        for (int i = 0; i < 16; i++) {
+            if(koordinaatit[i][0] == xa && koordinaatit[i][1] == ya) {
+                koordinaatit[i][0] = xl;
+                koordinaatit[i][1] = yl;
+            }
+        }
+    }
+    
+    /**
+     * Metodi muodostaa senhetkisen pelitilanteen mukaisen pinon siirrettäviä.
+     * @param kentta pelin senhetkinen tilanne
+     */
+    public void muodostaSiirrettavaPino(Kentta kentta) {
+        siirrettavat = new SiirrettavaPino();
+        for (int i = 0; i < 16; i++) {
+            if(koordinaatit[i][0] != -1) siirrettavat.push(new Siirrettava(kentta, koordinaatit[i][0], koordinaatit[i][1]));
+        }
+    }
+    
+    /**
+     * Metodi palauttaa tiedon siitä onko siirrettäväpinossa pelinappuloita 
+     * jäljellä
+     * @return totuusarvo siitä onko siirrettäväpinossa pelinappuloita jäljellä
+     */
     public boolean nappuloitaJaljella() {
-        return osoitin == 0;
+        return !siirrettavat.onTyhja();
+    }
+    
+    /**
+     * Metodi palauttaa seuraavan siirrettävän pinosta
+     * @return seuraava siirrettävä pinosta, tai null, jos pino on tyhjä
+     */
+    public Siirrettava seuraava() {
+        if(siirrettavat.onTyhja()) return null;
+        return siirrettavat.pop();
     }
 }

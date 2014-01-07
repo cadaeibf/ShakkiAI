@@ -4,12 +4,12 @@
  */
 package shakkiai_ohjelmakoodi.ai;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import shakkiai_ohjelmakoodi.pelilogiikka.Kentta;
 import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Kuningas;
-import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Nappula;
 import shakkiai_ohjelmakoodi.pelilogiikka.Pelaaja;
 import shakkiai_ohjelmakoodi.pelilogiikka.Siirto;
-import shakkiai_ohjelmakoodi.pelilogiikka.st.Siirtohallinta;
 
 /**
  * Tekoäly-luokka, joka koittaa valita oman siirtonsa kentän silloisen tilanteen 
@@ -19,18 +19,11 @@ import shakkiai_ohjelmakoodi.pelilogiikka.st.Siirtohallinta;
 public class AI implements Pelaaja {
     private int pelaajaNro;
     private Kuningas kuningas;
-    private Nappulahallinta omat;
-    private Nappulahallinta vastustajan;
-    private Siirtohallinta siirtohallinta;
+    private Siirronvalitsija siirronvalitsija;
     
     public AI(int pelaajaNro) {
         this.pelaajaNro = pelaajaNro;
-        omat = new Nappulahallinta(pelaajaNro);
-        siirtohallinta = new Siirtohallinta();
-        
-        if(pelaajaNro == 1) {
-            vastustajan = new Nappulahallinta(2);
-        } else vastustajan = new Nappulahallinta(1);
+        siirronvalitsija = new Siirronvalitsija(pelaajaNro);
     }
     
     @Override
@@ -50,22 +43,13 @@ public class AI implements Pelaaja {
 
     @Override
     public Siirto teeSiirto(Kentta kentta) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    private Siirto valitseSiirto(Kentta kentta, int syvyys, Siirto paras) {
-        if(syvyys == 2) return null;
-        
-        Nappula nappula;
-        int[] koordinaatit = new int[2];
-        
-        while(omat.nappuloitaJaljella()) {
-            koordinaatit = omat.seuraavanKoordinaatit();
-            nappula = kentta.nappulaKoordinaatissa(koordinaatit[0], koordinaatit[1]);
+        System.out.println("Valitaan siirto...");
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(AI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        return null;
+        return siirronvalitsija.teeSiirto(kentta);
     }
-    
     
 }

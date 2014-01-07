@@ -4,6 +4,7 @@
  */
 package shakkiai_ohjelmakoodi.pelilogiikka;
 
+import shakkiai_ohjelmakoodi.ai.AI;
 import shakkiai_ohjelmakoodi.pelilogiikka.st.Siirtohallinta;
 
 /**
@@ -13,14 +14,14 @@ import shakkiai_ohjelmakoodi.pelilogiikka.st.Siirtohallinta;
 public class Peli {
     private Kentta kentta;
     private int pelivuoro;
-    private Ihmispelaaja pelaaja1;
-    private Ihmispelaaja pelaaja2;
+    private Pelaaja pelaaja1;
+    private Pelaaja pelaaja2;
     private Siirtohallinta siirtohallinta;
     private boolean peliKaynnissa;
     
     public Peli() {
         pelaaja1 = new Ihmispelaaja(1);
-        pelaaja2 = new Ihmispelaaja(2);
+        pelaaja2 = new AI(2);
         kentta = new Kentta(pelaaja1, pelaaja2);
         pelivuoro = 1;
         siirtohallinta = new Siirtohallinta();
