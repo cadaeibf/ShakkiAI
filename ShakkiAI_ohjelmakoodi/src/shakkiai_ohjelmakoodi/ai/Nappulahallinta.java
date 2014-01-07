@@ -69,12 +69,8 @@ public class Nappulahallinta {
      * @param yl siirretyn pelinappulan y-koordinaatti lopussa
      */
     public void siirra(int xa, int ya, int xl, int yl) {
-        int x,y;
-        
         for (int i = 0; i < 16; i++) {
-            x = koordinaatit[i][0];
-            y = koordinaatit[i][1];
-            if(x == xa && y == ya) {
+            if(koordinaatit[i][0] == xa && koordinaatit[i][1] == ya) {
                 koordinaatit[i][0] = xl;
                 koordinaatit[i][1] = yl;
                 return;
