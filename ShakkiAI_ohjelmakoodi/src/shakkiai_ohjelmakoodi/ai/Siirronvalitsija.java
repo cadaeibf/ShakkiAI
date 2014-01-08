@@ -17,8 +17,10 @@ public class Siirronvalitsija {
     private int omaPelinumero;
     private int parasArvo;
     private Siirto parasSiirto;
-    private int syvyys;
     private int nykyinenArvo;
+    private int alkuarvo;
+    
+    private int rekursiokutsuja;
     
     public Siirronvalitsija(int peliNro) {
         omaPelinumero = peliNro;
@@ -39,31 +41,40 @@ public class Siirronvalitsija {
 
     private void alustaPaikallisetMuuttujat(Kentta kentta) {
         parasArvo = Integer.MIN_VALUE;
-        parasSiirto = null;
-        nykyinenArvo = omat.arvo(kentta) - vastustajan.arvo(kentta);
+        nykyinenArvo = Integer.MIN_VALUE;
+        alkuarvo = omat.arvo(kentta) - vastustajan.arvo(kentta);
+        rekursiokutsuja = 0;
         
     }
 
     private void valitseSiirto(Kentta kentta, int syvyys, int pelinumero, Nappulahallinta omat, Nappulahallinta vastustajan) {
+        System.out.println("\t rekursiokutsu " + rekursiokutsuja++);
         if(syvyys == 6) {
+            System.out.println("\tpohjalla");
             nykyinenArvo += omat.arvo(kentta) - vastustajan.arvo(kentta);
             return;
         }
+        
         Siirto siirto = new Siirto(0,0,0,0);
+        omat.muodostaSiirrettavaPino(kentta);
+        vastustajan.muodostaSiirrettavaPino(kentta);
+        
         
         if(pelinumero == omaPelinumero) {
             while(omat.nappuloitaJaljella()) {
                 Siirrettava siirrettava = omat.seuraava();
                 
                 while(siirrettava.siirtojaJaljella()) {
-                    Kentta kentta2 = kentta;
+                    Kentta kentta2 = kentta.kopioi();
+                    Nappulahallinta omat2 = omat.kopioi();
+                    Nappulahallinta vastustajan2 = vastustajan.kopioi();
                     siirto = siirrettava.seuraavaSiirto();
+                    
                     kentta2.teeSiirto(siirto);
                     
-                    Nappulahallinta omat2 = omat;
-                    Nappulahallinta vastustajan2 = vastustajan;
                     
-                    omat2.siirra(siirto.xAlku(), siirto.yAlku(), siirto.xLoppu(), siirto.yLoppu());
+                    
+                    omat2.siirra(kentta2, siirto.xAlku(), siirto.yAlku(), siirto.xLoppu(), siirto.yLoppu());
                     vastustajan2.paivita(kentta2);
                     
                     valitseSiirto(kentta2, syvyys+1, vaihdaPelinumero(pelinumero), omat2, vastustajan2);
@@ -74,15 +85,15 @@ public class Siirronvalitsija {
                 Siirrettava siirrettava = vastustajan.seuraava();
                 
                 while(siirrettava.siirtojaJaljella()) {
-                    Kentta kentta2 = kentta;
+                    Kentta kentta2 = kentta.kopioi();
+                    Nappulahallinta omat2 = omat.kopioi();
+                    Nappulahallinta vastustajan2 = vastustajan.kopioi();
                     siirto = siirrettava.seuraavaSiirto();
+                    
                     kentta2.teeSiirto(siirto);
                     
-                    Nappulahallinta omat2 = omat;
-                    Nappulahallinta vastustajan2 = vastustajan;
-                    
+                    vastustajan2.siirra(kentta2, siirto.xAlku(), siirto.yAlku(), siirto.xLoppu(), siirto.yLoppu());
                     omat2.paivita(kentta2);
-                    vastustajan2.siirra(siirto.xAlku(), siirto.yAlku(), siirto.xLoppu(), siirto.yLoppu());
                     
                     valitseSiirto(kentta2, syvyys+1, vaihdaPelinumero(pelinumero), omat2, vastustajan2);
                 }
@@ -90,11 +101,12 @@ public class Siirronvalitsija {
         }
         
         if(syvyys == 1) {
+            System.out.println("Arvon tarkistus");
             if(nykyinenArvo > parasArvo) {
                 parasArvo = nykyinenArvo;
                 parasSiirto = siirto;
             }
-            nykyinenArvo = 0;
+            nykyinenArvo = alkuarvo;
         }
     }
     

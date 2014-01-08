@@ -2,10 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package shakkiai_ohjelmakoodi.pelilogiikka;
+package shakkiai_ohjelmakoodi.main;
 
+import shakkiai_ohjelmakoodi.pelilogiikka.Kentta;
 import shakkiai_ohjelmakoodi.util.Lukija;
 import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Kuningas;
+import shakkiai_ohjelmakoodi.pelilogiikka.Pelaaja;
+import shakkiai_ohjelmakoodi.pelilogiikka.Siirto;
 
 /**
  * Luokka ns. ihmispelaajalle.

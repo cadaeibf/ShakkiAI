@@ -12,7 +12,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import shakkiai_ohjelmakoodi.pelilogiikka.Kentta;
 import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Torni;
-import shakkiai_ohjelmakoodi.pelilogiikka.Ihmispelaaja;
+import shakkiai_ohjelmakoodi.main.Ihmispelaaja;
 import shakkiai_ohjelmakoodi.pelilogiikka.st.TorniST;
 
 /**

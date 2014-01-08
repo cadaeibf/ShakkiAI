@@ -31,7 +31,7 @@ public class KuningasST implements Siirrontarkastaja {
         int vertikaalisiirtyma = yl - ya;
         if(vertikaalisiirtyma < 0) vertikaalisiirtyma *= -1;
         
-        return (horisontaalisiirtyma <= 1 && vertikaalisiirtyma <= 1);
+        return !(horisontaalisiirtyma <= 1 && vertikaalisiirtyma <= 1);
     }
 
     private boolean maaliruudussaOmia(int omistajanPelinumero, Kentta kentta, int xl, int yl) {

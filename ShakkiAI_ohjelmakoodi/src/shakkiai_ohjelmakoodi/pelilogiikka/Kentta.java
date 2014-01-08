@@ -19,6 +19,9 @@ import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Torni;
  */
 public class Kentta {
     private Ruutu[][] kentta;
+
+    public Kentta() {
+    }
     
     public Kentta(Pelaaja pelaaja1, Pelaaja pelaaja2) {
         this.kentta = new Ruutu[8][8];
@@ -32,6 +35,16 @@ public class Kentta {
         asetaKuningattaret(pelaaja1, pelaaja2);
         asetaKuninkaat(pelaaja1, pelaaja2);
     }
+    
+    public Kentta kopioi() {
+        Kentta kopio = new Kentta();
+        kopio.annaAsetelma(kentta);
+        return kopio;
+    }
+    
+    private void annaAsetelma(Ruutu[][] asetelma) {
+        this.kentta = asetelma;
+    } 
     
     private void alustaRuudut() {
         for (int i = 0; i < 8; i++) {
@@ -173,7 +186,7 @@ public class Kentta {
     
     private boolean uhattuAlhaalta(int pelaajaNumero, int x, int y) {
         int i = 1;
-        while(x+1 < 8 && kentta[x+i][y].onTyhja()) i++;
+        while(x+i < 8 && kentta[x+i][y].onTyhja()) i++;
         
         if(x+i == 8) return false;
         

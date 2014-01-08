@@ -43,6 +43,16 @@ public class Nappulahallinta {
         }
     }
     
+    public Nappulahallinta kopioi() {
+        Nappulahallinta kopio = new Nappulahallinta(peliNro);
+        kopio.setKoordinaatit(koordinaatit);
+        return kopio;
+    }
+    
+    private void setKoordinaatit(int[][] koordinaatit) {
+        this.koordinaatit = koordinaatit;
+    }
+    
     /**
      * Metodi tarkistaa annetusta kentästä, että onko omia pelinappuloita syöty
      * ja poistaa syödyt nappulat hallinnasta muuttamalla kyseisen nappulan 
@@ -59,6 +69,7 @@ public class Nappulahallinta {
                 koordinaatit[i][0] = -1;
             }
         }
+        muodostaSiirrettavaPino(kentta);
     }
     
     /**
@@ -68,11 +79,12 @@ public class Nappulahallinta {
      * @param xl siirretyn pelinappulan x-koordinaatti lopussa
      * @param yl siirretyn pelinappulan y-koordinaatti lopussa
      */
-    public void siirra(int xa, int ya, int xl, int yl) {
+    public void siirra(Kentta kentta, int xa, int ya, int xl, int yl) {
         for (int i = 0; i < 16; i++) {
             if(koordinaatit[i][0] == xa && koordinaatit[i][1] == ya) {
                 koordinaatit[i][0] = xl;
                 koordinaatit[i][1] = yl;
+                muodostaSiirrettavaPino(kentta);
                 return;
             }
         }

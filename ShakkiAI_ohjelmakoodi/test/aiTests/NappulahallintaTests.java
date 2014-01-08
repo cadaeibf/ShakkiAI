@@ -11,7 +11,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import shakkiai_ohjelmakoodi.ai.Nappulahallinta;
-import shakkiai_ohjelmakoodi.pelilogiikka.Ihmispelaaja;
+import shakkiai_ohjelmakoodi.ai.Siirrettava;
+import shakkiai_ohjelmakoodi.main.Ihmispelaaja;
 import shakkiai_ohjelmakoodi.pelilogiikka.Kentta;
 import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Sotilas;
 import shakkiai_ohjelmakoodi.pelilogiikka.Siirto;
@@ -21,7 +22,9 @@ import shakkiai_ohjelmakoodi.pelilogiikka.Siirto;
  * @author anterova
  */
 public class NappulahallintaTests {
-    private Nappulahallinta nappulahallinta;
+    private Kentta kentta;
+    private Nappulahallinta omat;
+    private Nappulahallinta vastustajan;
     
     public NappulahallintaTests() {
     }
@@ -36,7 +39,9 @@ public class NappulahallintaTests {
     
     @Before
     public void setUp() {
-        nappulahallinta = new Nappulahallinta(1);
+        omat = new Nappulahallinta(1);
+        vastustajan = new Nappulahallinta(2);
+        kentta = new Kentta(new Ihmispelaaja(1), new Ihmispelaaja(2));
     }
     
     @After
@@ -45,23 +50,54 @@ public class NappulahallintaTests {
     
     @Test
     public void arvoAlussaOikein() {
-        assertEquals(39, nappulahallinta.arvo(new Kentta(new Ihmispelaaja(1), new Ihmispelaaja(2))));
+        assertEquals(39, omat.arvo(kentta));
     }
     
     @Test
     public void arvoOikeinKunNappulaSyoty() {
-        Kentta kentta = new Kentta(new Ihmispelaaja(1), new Ihmispelaaja(2));
         kentta.haeRuutu(1, 0).poistaNappula();
         kentta.haeRuutu(1, 0).setNappula(new Sotilas(new Ihmispelaaja(2)));
-        nappulahallinta.paivita(kentta);
-        assertEquals(38, nappulahallinta.arvo(kentta));
+        omat.paivita(kentta);
+        assertEquals(38, omat.arvo(kentta));
     }
     
     @Test
     public void arvoSailyyOikeanaKunNappulaaLiikutetaan() {
-        Kentta kentta = new Kentta(new Ihmispelaaja(1), new Ihmispelaaja(2));
         kentta.teeSiirto(new Siirto(1, 0, 3, 0));
-        nappulahallinta.siirra(1, 0, 3, 0);
-        assertEquals(39, nappulahallinta.arvo(kentta));
+        omat.siirra(kentta, 1, 0, 3, 0);
+        assertEquals(39, omat.arvo(kentta));
     }
+    
+    @Test
+    public void siirrettaviaAlussaOikeaMaara() {
+        int siirrettavia = 0;
+        omat.muodostaSiirrettavaPino(kentta);
+        Siirto siirto;
+        
+        while(omat.nappuloitaJaljella()) {
+            siirrettavia++;
+            Siirrettava siirrettava = omat.seuraava();
+        }
+        assertEquals(16, siirrettavia);
+    }
+    
+    @Test
+    public void siirtojaAlussaOikeaMaara() {
+        int siirtoja = 0;
+        omat.muodostaSiirrettavaPino(kentta);
+        Siirrettava siirrettava;
+        Siirto siirto;
+        
+        while(omat.nappuloitaJaljella()) {
+            siirrettava = omat.seuraava();
+            
+            while(siirrettava.siirtojaJaljella()) {
+                siirto = siirrettava.seuraavaSiirto();
+                siirtoja++;
+            }
+        }
+        
+        assertEquals(20, siirtoja);
+    }
+    
 }
