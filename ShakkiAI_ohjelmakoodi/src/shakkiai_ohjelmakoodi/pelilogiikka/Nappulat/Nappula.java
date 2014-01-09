@@ -25,4 +25,6 @@ public interface Nappula {
     public int omistajanPelinumero();
     
     public int arvo();
+    
+    public Nappula kopioi();
 }

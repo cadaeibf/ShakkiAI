@@ -39,5 +39,10 @@ public class Ratsu implements Nappula {
     public int arvo() {
         return 3;
     }
+
+    @Override
+    public Nappula kopioi() {
+        return new Ratsu(this.pelaaja);
+    }
     
 }

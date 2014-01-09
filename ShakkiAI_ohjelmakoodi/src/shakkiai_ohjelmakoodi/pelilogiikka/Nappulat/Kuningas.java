@@ -66,5 +66,13 @@ public class Kuningas implements Nappula {
     public int arvo() {
         return 0;
     }
+
+    @Override
+    public Nappula kopioi() {
+        Kuningas kopio = new Kuningas(this.pelaaja);
+        if(uhattu) kopio.uhkaa();
+        
+        return kopio;
+    }
     
 }

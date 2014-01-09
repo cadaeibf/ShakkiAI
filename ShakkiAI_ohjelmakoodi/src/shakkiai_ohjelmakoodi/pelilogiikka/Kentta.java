@@ -21,6 +21,7 @@ public class Kentta {
     private Ruutu[][] kentta;
 
     public Kentta() {
+        this.kentta = new Ruutu[8][8];
     }
     
     public Kentta(Pelaaja pelaaja1, Pelaaja pelaaja2) {
@@ -38,7 +39,13 @@ public class Kentta {
     
     public Kentta kopioi() {
         Kentta kopio = new Kentta();
-        kopio.annaAsetelma(kentta);
+        
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                kopio.kentta[i][j] = this.kentta[i][j].kopio();
+            }
+        }
+        
         return kopio;
     }
     
@@ -53,6 +60,23 @@ public class Kentta {
             }
         }
         
+    }
+    
+    /**
+     * Metodi palauttaa annetun pelaajan pelinappuloiden suhteellisen yhteisarvon
+     * @param pelaajaNro kysytyn pelaajan pelinumero
+     * @return pelaajan pelinappuloiden suhteellinen yhteisarvo
+     */
+    public int arvo(int pelaajaNro) {
+        int arvo = 0;
+        
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if(!kentta[i][j].onTyhja() && kentta[i][j].getNappula().omistajanPelinumero() == pelaajaNro) arvo += kentta[i][j].getNappula().arvo();
+            }
+        }
+        
+        return arvo;
     }
     
     /**

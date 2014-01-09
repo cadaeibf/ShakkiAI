@@ -59,5 +59,13 @@ public class Sotilas implements Nappula {
     public int arvo() {
         return 1;
     }
+
+    @Override
+    public Nappula kopioi() {
+        Sotilas kopio = new Sotilas(this.pelaaja);
+        if(!this.eiLiikkunut) kopio.liikuta();
+        
+        return kopio;
+    }
     
 }

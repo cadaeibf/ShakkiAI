@@ -50,6 +50,16 @@ public class KenttaTests {
     }
     
     @Test
+    public void nappulatOikeissaPaikoissa1() {
+        assertEquals("Ra1", kentta.nappulaKoordinaatissa(0, 1).toString());
+    }
+    
+    @Test
+    public void nappulatOikeissaPaikoissa2() {
+        assertEquals("So2", kentta.nappulaKoordinaatissa(6, 3).toString());
+    }
+    
+    @Test
     public void ruudunUhkausVasemmalta() {
         kentta.haeRuutu(3, 0).setNappula(new Torni(pelaaja2));
         assertTrue(kentta.ruutuUhattu(1, 3, 3));

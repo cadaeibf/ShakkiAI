@@ -14,19 +14,19 @@ import shakkiai_ohjelmakoodi.util.KoordinaattiPino;
  * @author anterova
  */
 public class Siirrettava {
-    private int[] lahtokoordinaatit;
+    private int xa;
+    private int ya;
     private KoordinaattiPino maalikoordinaatit;
 
     public Siirrettava(Kentta kentta, int x, int y) {
+        xa = x;
+        ya = y;
         int peliNro = kentta.nappulaKoordinaatissa(x, y).omistajanPelinumero();
-        lahtokoordinaatit = new int[2];
-        lahtokoordinaatit[0] = x;
-        lahtokoordinaatit[1] = y;
         
-        luoMaalikoordinaatit(kentta, peliNro, x, y);
+        luoMaalikoordinaatit(kentta, peliNro);
     }
 
-    private void luoMaalikoordinaatit(Kentta kentta, int peliNro, int xa, int ya) {
+    private void luoMaalikoordinaatit(Kentta kentta, int peliNro) {
         Siirtohallinta siirtohallinta = new Siirtohallinta();
         maalikoordinaatit = new KoordinaattiPino();
         
@@ -46,7 +46,7 @@ public class Siirrettava {
         if(maalikoordinaatit.onTyhja()) return null;
         
         int[] seuraavatMaalikoordinaatit = maalikoordinaatit.pop();
-        return new Siirto(lahtokoordinaatit[0], lahtokoordinaatit[1], seuraavatMaalikoordinaatit[0], seuraavatMaalikoordinaatit[1]);
+        return new Siirto(xa, ya, seuraavatMaalikoordinaatit[0], seuraavatMaalikoordinaatit[1]);
     }
     
     /**

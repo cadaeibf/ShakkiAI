@@ -39,5 +39,10 @@ public class Kuningatar implements Nappula {
     public int arvo() {
         return 9;
     }
+
+    @Override
+    public Nappula kopioi() {
+        return new Kuningatar(this.pelaaja);
+    }
     
 }

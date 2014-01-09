@@ -40,5 +40,10 @@ public class Torni implements Nappula {
     public int arvo() {
         return 5;
     }
+
+    @Override
+    public Nappula kopioi() {
+        return new Torni(this.pelaaja);
+    }
     
 }

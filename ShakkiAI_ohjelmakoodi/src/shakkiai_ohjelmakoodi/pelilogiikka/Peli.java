@@ -30,7 +30,7 @@ public class Peli {
     }
     
     public void pelaaVuoro() {
-        while(true) {
+        while(peliKaynnissa) {
             System.out.println("\nPelaajan " + pelivuorossa().getPelaajaNro() + " vuoro\n");
             Siirto siirto = pelivuorossa().teeSiirto(kentta);
             if(siirtohallinta.tarkista(kentta, pelivuoro, siirto.xAlku(), siirto.yAlku(), siirto.xLoppu(), siirto.yLoppu())) {

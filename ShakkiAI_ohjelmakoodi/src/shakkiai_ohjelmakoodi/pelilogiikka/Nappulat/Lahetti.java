@@ -39,5 +39,10 @@ public class Lahetti implements Nappula {
     public int arvo() {
         return 3;
     }
+
+    @Override
+    public Nappula kopioi() {
+        return new Lahetti(this.pelaaja);
+    }
     
 }

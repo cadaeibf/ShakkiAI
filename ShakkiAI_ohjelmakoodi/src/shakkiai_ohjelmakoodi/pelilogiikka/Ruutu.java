@@ -45,6 +45,12 @@ public class Ruutu {
         return nappula;
     }
     
+    public Ruutu kopio() {
+        Ruutu kopio = new Ruutu();
+        if(!onTyhja()) kopio.setNappula(nappula.kopioi());
+        return kopio;
+    }
+    
     @Override
     public String toString() {
         if(nappula == null) return "[ ]";
