@@ -54,17 +54,18 @@ public class Siirronvalitsija {
                 kentta2.teeSiirto(siirto);
 
                 valitseSiirto(kentta2, syvyys+1, vaihdaPelinumero(pelinumero));
+                if(syvyys == 0) {
+                    if(nykyinenArvo > parasArvo) {
+                        parasArvo = nykyinenArvo;
+                        parasSiirto = siirto;
+                    }
+                    nykyinenArvo = alkuarvo;
+                }
             }
         }
         
         
-        if(syvyys == 0) {
-            if(nykyinenArvo > parasArvo) {
-                parasArvo = nykyinenArvo;
-                parasSiirto = siirto;
-            }
-            nykyinenArvo = alkuarvo;
-        }
+        
     }
     
     private int vaihdaPelinumero(int peliNumero) {

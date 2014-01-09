@@ -43,13 +43,16 @@ public class AI implements Pelaaja {
 
     @Override
     public Siirto teeSiirto(Kentta kentta) {
-        System.out.println("Valitaan siirto...\n");
+        System.out.print("Valitaan siirto...");
         try {
             Thread.sleep(1000);
         } catch (InterruptedException ex) {
             Logger.getLogger(AI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return siirronvalitsija.teeSiirto(kentta);
+        Siirto siirto = siirronvalitsija.teeSiirto(kentta);
+        System.out.println(" siirto valittu\n");
+        
+        return siirto;
     }
     
 }
