@@ -43,7 +43,7 @@ public class AI implements Pelaaja {
 
     @Override
     public Siirto teeSiirto(Kentta kentta) {
-        System.out.print("Valitaan siirto...");
+        System.out.print("Valitaan siirtoa...");
         try {
             Thread.sleep(1000);
         } catch (InterruptedException ex) {

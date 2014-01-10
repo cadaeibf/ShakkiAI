@@ -41,7 +41,7 @@ public class Siirronvalitsija {
             return;
         }
         
-        Siirto siirto = new Siirto(0,0,0,0);
+        Siirto siirto;
         Nappulahallinta nappulahallinta = new Nappulahallinta(pelinumero, kentta);
         
         while(nappulahallinta.nappuloitaJaljella()) {

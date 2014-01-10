@@ -37,6 +37,10 @@ public class Kentta {
         asetaKuninkaat(pelaaja1, pelaaja2);
     }
     
+    /**
+     * Metodi luo kopion kentästä
+     * @return kentän kopio
+     */
     public Kentta kopioi() {
         Kentta kopio = new Kentta();
         

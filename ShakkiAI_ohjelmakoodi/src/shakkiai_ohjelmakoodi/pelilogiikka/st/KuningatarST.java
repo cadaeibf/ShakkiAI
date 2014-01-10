@@ -89,11 +89,11 @@ public class KuningatarST implements Siirrontarkastaja {
             }
         } else {
             if(ya < yl) {
-                for (int i = 1; i < xl - xa; i++) {
+                for (int i = 1; i < xa - xl; i++) {
                     if(kentta.nappulaKoordinaatissa(xa - i, ya + i) != null) return true;
                 }
             } else {
-                for (int i = 1; i < xl - xa; i++) {
+                for (int i = 1; i < xa - xl; i++) {
                     if(kentta.nappulaKoordinaatissa(xa - i, ya - i) != null) return true;
                 }
             }
