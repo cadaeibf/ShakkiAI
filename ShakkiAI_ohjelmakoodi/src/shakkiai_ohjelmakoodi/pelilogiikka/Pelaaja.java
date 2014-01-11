@@ -4,7 +4,6 @@
  */
 package shakkiai_ohjelmakoodi.pelilogiikka;
 
-import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Kuningas;
 
 /**
  * Rajapinta pelaajille, jotka voivat olla joko ihmispelaajia, tai shakkibotteja.
@@ -17,10 +16,6 @@ public interface Pelaaja {
      * @return kyseisen pelaajan pelaajanumero
      */
     public int getPelaajaNro();
-    
-    public void setKuningas(Kuningas kuningas);
-    
-    public Kuningas getKuningas();
     
     public Siirto teeSiirto(Kentta kentta);
     

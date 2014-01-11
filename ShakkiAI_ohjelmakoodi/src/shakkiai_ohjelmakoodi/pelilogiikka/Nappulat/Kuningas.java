@@ -12,39 +12,12 @@ import shakkiai_ohjelmakoodi.pelilogiikka.Pelaaja;
  */
 public class Kuningas implements Nappula {
     private Pelaaja pelaaja;
-    private boolean uhattu;
 
     public Kuningas() {
     }
 
     public Kuningas(Pelaaja pelaaja) {
         this.pelaaja = pelaaja;
-        uhattu = false;
-    }
-    
-    /**
-     * Metodi muuttaa tiedon siitä, onko kuningas uhattu, eli voitaisiinko se
-     * syödä seuraavalla vuorolla.
-     */
-    public void uhkaa() {
-        uhattu = true;
-    }
-    
-    /**
-     * Metodi muuttaa tiedon siitä, onko kuningas uhattu, eli voitaisiinko se
-     * syödä seuraavalla vuorolla.
-     */
-    public void suojaa() {
-        uhattu = false;
-    }
-    
-    /**
-     * Metodi, jolla selvitetään, onko kuningas uhattu.
-     * @return totuusarvo siitä onko kuningas uhattu, eli voitaisiinko se syödä 
-     * seuraavalla vuorolla
-     */
-    public boolean uhattu() {
-        return uhattu;
     }
 
     @Override
@@ -70,7 +43,6 @@ public class Kuningas implements Nappula {
     @Override
     public Nappula kopioi() {
         Kuningas kopio = new Kuningas(this.pelaaja);
-        if(uhattu) kopio.uhkaa();
         
         return kopio;
     }

@@ -58,4 +58,11 @@ public class Siirrettava {
         return !maalikoordinaatit.onTyhja();
     }
     
+    public int[] lahtokoordinaatit() {
+        int[] lahtokoordinaatit = new int[2];
+        lahtokoordinaatit[0] = xa;
+        lahtokoordinaatit[1] = ya;
+        return lahtokoordinaatit;
+    }
+    
 }

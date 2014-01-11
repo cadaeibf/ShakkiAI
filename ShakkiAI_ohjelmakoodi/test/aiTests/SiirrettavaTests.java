@@ -13,6 +13,8 @@ import static org.junit.Assert.*;
 import shakkiai_ohjelmakoodi.ai.Siirrettava;
 import shakkiai_ohjelmakoodi.main.Ihmispelaaja;
 import shakkiai_ohjelmakoodi.pelilogiikka.Kentta;
+import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Kuningas;
+import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Torni;
 import shakkiai_ohjelmakoodi.pelilogiikka.Siirto;
 
 /**
@@ -89,6 +91,23 @@ public class SiirrettavaTests {
     public void kuninkaallaEiAlussaSiirtoja() {
         siirrettava = new Siirrettava(kentta,0,3);
         assertFalse(siirrettava.siirtojaJaljella());
+    }
+    
+    @Test
+    public void mattiTilanne1() {
+        kentta = new Kentta();
+        kentta.haeRuutu(0, 0).setNappula(new Kuningas(new Ihmispelaaja(1)));
+        kentta.haeRuutu(0, 3).setNappula(new Torni(new Ihmispelaaja(2)));
+        kentta.haeRuutu(1, 3).setNappula(new Torni(new Ihmispelaaja(2)));
+        
+        siirrettava = new Siirrettava(kentta, 0, 0);
+        int siirtoja = 0;
+        Siirto siirto;
+        while(siirrettava.siirtojaJaljella()) {
+            siirtoja++;
+            siirto = siirrettava.seuraavaSiirto();
+        }
+        assertEquals(0, siirtoja);
     }
     
 }

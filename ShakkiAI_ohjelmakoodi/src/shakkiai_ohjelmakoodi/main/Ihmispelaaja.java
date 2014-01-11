@@ -6,7 +6,6 @@ package shakkiai_ohjelmakoodi.main;
 
 import shakkiai_ohjelmakoodi.pelilogiikka.Kentta;
 import shakkiai_ohjelmakoodi.util.Lukija;
-import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Kuningas;
 import shakkiai_ohjelmakoodi.pelilogiikka.Pelaaja;
 import shakkiai_ohjelmakoodi.pelilogiikka.Siirto;
 
@@ -16,16 +15,11 @@ import shakkiai_ohjelmakoodi.pelilogiikka.Siirto;
  */
 public class Ihmispelaaja implements Pelaaja {
     private int pelaajaNro;
-    private Kuningas kuningas;
     private Lukija lukija;
     
     public Ihmispelaaja(int pelaajaNro) {
         this.pelaajaNro = pelaajaNro;
         lukija = new Lukija();
-    }
-    
-    public void setKuningas(Kuningas kuningas) {
-        this.kuningas = kuningas;
     }
 
     @Override
@@ -50,11 +44,6 @@ public class Ihmispelaaja implements Pelaaja {
         System.out.println("");
         
         return new Siirto(xa, ya, xl, yl);
-    }
-
-    @Override
-    public Kuningas getKuningas() {
-        return kuningas;
     }
     
 }

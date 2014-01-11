@@ -18,14 +18,17 @@ public class Peli {
     private Pelaaja pelaaja1;
     private Pelaaja pelaaja2;
     private Siirtohallinta siirtohallinta;
+    private Matintarkastaja matintarkastaja;
     private boolean peliKaynnissa;
+    private Pelaaja voittaja;
     
     public Peli() {
-        pelaaja1 = new AI(1);
-        pelaaja2 = new AI(2);
+        pelaaja1 = new Ihmispelaaja(1);
+        pelaaja2 = new Ihmispelaaja(2);
         kentta = new Kentta(pelaaja1, pelaaja2);
         pelivuoro = 1;
         siirtohallinta = new Siirtohallinta();
+        matintarkastaja = new Matintarkastaja();
         peliKaynnissa = true;
     }
     
@@ -66,7 +69,13 @@ public class Peli {
     }
     
     private void tarkistaTilanne() {
-        
+        if(matintarkastaja.matti(kentta, 2)) {
+            peliKaynnissa = false;
+            voittaja = pelaaja1;
+        } else if(matintarkastaja.matti(kentta, 1)) {
+            peliKaynnissa = false;
+            voittaja = pelaaja2;
+        }
     }
     
 }

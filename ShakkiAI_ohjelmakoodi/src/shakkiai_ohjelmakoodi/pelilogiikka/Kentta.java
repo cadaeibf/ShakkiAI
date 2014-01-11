@@ -22,6 +22,12 @@ public class Kentta {
 
     public Kentta() {
         this.kentta = new Ruutu[8][8];
+        
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                kentta[i][j] = new Ruutu();
+            }
+        }
     }
     
     public Kentta(Pelaaja pelaaja1, Pelaaja pelaaja2) {
@@ -88,6 +94,10 @@ public class Kentta {
      * @param siirto suoritettava siirto
      */
     public void teeSiirto(Siirto siirto) {
+        if(kentta[siirto.xAlku()][siirto.yAlku()].getNappula().getClass() == new Sotilas().getClass()) {
+            Sotilas sotilas = (Sotilas) kentta[siirto.xAlku()][siirto.yAlku()].getNappula();
+            sotilas.liikuta();
+        }
         kentta[siirto.xLoppu()][siirto.yLoppu()].setNappula(kentta[siirto.xAlku()][siirto.yAlku()].getNappula());
         kentta[siirto.xAlku()][siirto.yAlku()].poistaNappula();
     }
@@ -172,11 +182,9 @@ public class Kentta {
         
         kuningas = new Kuningas(pelaaja1);
         kentta[0][3].setNappula(kuningas);
-        pelaaja1.setKuningas(kuningas);
         
         kuningas = new Kuningas(pelaaja2);
         kentta[7][3].setNappula(kuningas);
-        pelaaja2.setKuningas(kuningas);
     }
     
     /**

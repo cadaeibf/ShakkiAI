@@ -7,7 +7,6 @@ package shakkiai_ohjelmakoodi.ai;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import shakkiai_ohjelmakoodi.pelilogiikka.Kentta;
-import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Kuningas;
 import shakkiai_ohjelmakoodi.pelilogiikka.Pelaaja;
 import shakkiai_ohjelmakoodi.pelilogiikka.Siirto;
 
@@ -18,7 +17,6 @@ import shakkiai_ohjelmakoodi.pelilogiikka.Siirto;
  */
 public class AI implements Pelaaja {
     private int pelaajaNro;
-    private Kuningas kuningas;
     private Siirronvalitsija siirronvalitsija;
     
     public AI(int pelaajaNro) {
@@ -29,16 +27,6 @@ public class AI implements Pelaaja {
     @Override
     public int getPelaajaNro() {
         return pelaajaNro;
-    }
-
-    @Override
-    public void setKuningas(Kuningas kuningas) {
-        this.kuningas = kuningas;
-    }
-
-    @Override
-    public Kuningas getKuningas() {
-        return kuningas;
     }
 
     @Override

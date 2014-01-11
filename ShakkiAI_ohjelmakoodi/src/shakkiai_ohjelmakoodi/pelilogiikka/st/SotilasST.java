@@ -48,7 +48,6 @@ public class SotilasST implements Siirrontarkastaja {
         if(ya != yl) return false;
         
         if( xl - xa == 2 ) {
-            sotilas.liikuta();
             return true;
         }
         
@@ -77,7 +76,6 @@ public class SotilasST implements Siirrontarkastaja {
         if(ya != yl) return false;
         
         if( xl - xa == -2 ) {
-            sotilas.liikuta();
             return true;
         }
         
