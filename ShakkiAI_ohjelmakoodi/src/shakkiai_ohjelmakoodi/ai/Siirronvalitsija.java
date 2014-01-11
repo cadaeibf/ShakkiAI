@@ -13,10 +13,10 @@ import shakkiai_ohjelmakoodi.pelilogiikka.Siirto;
  */
 public class Siirronvalitsija {
     private int omaPelinumero;
-    private int parasArvo;
+    private double parasArvo;
     private Siirto parasSiirto;
-    private int nykyinenArvo;
-    private int alkuarvo;
+    private double nykyinenArvo;
+    private double alkuarvo;
     
     public Siirronvalitsija(int peliNro) {
         omaPelinumero = peliNro;
@@ -29,14 +29,14 @@ public class Siirronvalitsija {
     }
 
     private void alustaPaikallisetMuuttujat(Kentta kentta) {
-        parasArvo = Integer.MIN_VALUE;
+        parasArvo = Double.MIN_VALUE;
         alkuarvo = kentta.arvo(omaPelinumero) - kentta.arvo(vaihdaPelinumero(omaPelinumero));
         nykyinenArvo = alkuarvo;
         
     }
 
     private void valitseSiirto(Kentta kentta, int syvyys, int pelinumero) {
-        if(syvyys == 4) {
+        if(syvyys == 3) {
             nykyinenArvo += kentta.arvo(omaPelinumero) - kentta.arvo(vaihdaPelinumero(omaPelinumero));
             return;
         }
@@ -63,8 +63,6 @@ public class Siirronvalitsija {
                 }
             }
         }
-        
-        
         
     }
     

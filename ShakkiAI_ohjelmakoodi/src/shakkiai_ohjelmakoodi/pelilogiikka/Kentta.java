@@ -77,16 +77,23 @@ public class Kentta {
      * @param pelaajaNro kysytyn pelaajan pelinumero
      * @return pelaajan pelinappuloiden suhteellinen yhteisarvo
      */
-    public int arvo(int pelaajaNro) {
-        int arvo = 0;
+    public double arvo(int pelaajaNro) {
+        double arvo = 0;
         
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                if(!kentta[i][j].onTyhja() && kentta[i][j].getNappula().omistajanPelinumero() == pelaajaNro) arvo += kentta[i][j].getNappula().arvo();
+                if(!kentta[i][j].onTyhja() && kentta[i][j].getNappula().omistajanPelinumero() == pelaajaNro) arvo += kentta[i][j].getNappula().arvo() + painoArvo(i,j);
             }
         }
         
         return arvo;
+    }
+    
+    private double painoArvo(int x, int y) {
+        double painoArvo = 0;
+        
+        
+        return painoArvo;
     }
     
     /**
