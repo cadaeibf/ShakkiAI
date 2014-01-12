@@ -4,15 +4,8 @@
  */
 package shakkiai_ohjelmakoodi.pelilogiikka.st;
 
-import java.util.HashMap;
 import shakkiai_ohjelmakoodi.pelilogiikka.Kentta;
 import shakkiai_ohjelmakoodi.pelilogiikka.Matintarkastaja;
-import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Kuningas;
-import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Kuningatar;
-import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Lahetti;
-import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Ratsu;
-import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Sotilas;
-import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Torni;
 import shakkiai_ohjelmakoodi.pelilogiikka.Siirto;
 import shakkiai_ohjelmakoodi.util.Siirtohallintahajautus;
 
