@@ -21,6 +21,7 @@ public class Kayttoliittyma {
      * Metodi käynnistää ohjelman ajon käyttöliittymäluokan osalta.
      */
     public void kaynnista() {
+        System.out.println("");
         while(peli.peliKaynnissa()) {
             peli.tulostaKentta();
             peli.pelaaVuoro();
