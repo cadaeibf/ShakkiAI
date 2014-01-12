@@ -49,7 +49,7 @@ public class Siirronvalitsija {
             nykyinenArvo -= laskeMattipainotus(syvyys);
             return;
         }
-        if(syvyys == 5) {
+        if(syvyys == 4) {
             nykyinenArvo += kentta.arvo(omaPelinumero) - kentta.arvo(vaihdaPelinumero(omaPelinumero));
             return;
         }
