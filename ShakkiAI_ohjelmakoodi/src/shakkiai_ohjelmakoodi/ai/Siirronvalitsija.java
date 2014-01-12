@@ -32,10 +32,10 @@ public class Siirronvalitsija {
     }
 
     private void alustaPaikallisetMuuttujat(Kentta kentta) {
-        parasArvo = Double.MIN_VALUE;
+        parasArvo = Double.NEGATIVE_INFINITY;
         alkuarvo = kentta.arvo(omaPelinumero) - kentta.arvo(vaihdaPelinumero(omaPelinumero));
         nykyinenArvo = alkuarvo;
-        
+        parasSiirto = null;
     }
 
     private void valitseSiirto(Kentta kentta, int syvyys, int pelinumero) {
@@ -47,7 +47,7 @@ public class Siirronvalitsija {
             nykyinenArvo -= laskeMattipainotus(syvyys);
             return;
         }
-        if(syvyys == 3) {
+        if(syvyys == 4) {
             nykyinenArvo += kentta.arvo(omaPelinumero) - kentta.arvo(vaihdaPelinumero(omaPelinumero));
             return;
         }
@@ -62,6 +62,8 @@ public class Siirronvalitsija {
             while(siirrettava.siirtojaJaljella()) {
                 Kentta kentta2 = kentta.kopioi();
                 siirto = siirrettava.seuraavaSiirto();
+                
+                if(parasSiirto == null) parasSiirto = siirto;
 
                 kentta2.teeSiirto(siirto);
 

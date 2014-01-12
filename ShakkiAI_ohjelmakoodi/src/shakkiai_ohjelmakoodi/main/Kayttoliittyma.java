@@ -25,6 +25,7 @@ public class Kayttoliittyma {
             peli.tulostaKentta();
             peli.pelaaVuoro();
         }
+        peli.tulostaKentta();
         peli.loppuTulostus();
     }
 }

@@ -24,7 +24,7 @@ public class Peli {
     
     public Peli() {
         pelaaja1 = new AI(1);
-        pelaaja2 = new AI(2);
+        pelaaja2 = new Ihmispelaaja(2);
         kentta = new Kentta(pelaaja1, pelaaja2);
         pelivuoro = 1;
         siirtohallinta = new Siirtohallinta();
@@ -33,9 +33,12 @@ public class Peli {
     }
     
     public void pelaaVuoro() {
-        while(peliKaynnissa) {
-            System.out.println("\nPelaajan " + pelivuorossa().getPelaajaNro() + " vuoro\n");
-            Siirto siirto = pelivuorossa().teeSiirto(kentta);
+        Siirto siirto;
+        
+        while(true) {
+            System.out.println("\nPelaajan " + pelivuoro + " vuoro\n");
+            siirto = pelivuorossa().teeSiirto(kentta);
+            
             if(siirtohallinta.tarkista(kentta, pelivuoro, siirto.xAlku(), siirto.yAlku(), siirto.xLoppu(), siirto.yLoppu())) {
                 kentta.teeSiirto(siirto);
                 tarkistaTilanne();
