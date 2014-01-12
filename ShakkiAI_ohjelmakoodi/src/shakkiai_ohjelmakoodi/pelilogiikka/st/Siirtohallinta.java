@@ -14,6 +14,7 @@ import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Ratsu;
 import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Sotilas;
 import shakkiai_ohjelmakoodi.pelilogiikka.Nappulat.Torni;
 import shakkiai_ohjelmakoodi.pelilogiikka.Siirto;
+import shakkiai_ohjelmakoodi.util.Siirtohallintahajautus;
 
 /**
  * Luokka tarkistaa, onko annetut siirrot laillisia spesifimpien 
@@ -21,24 +22,12 @@ import shakkiai_ohjelmakoodi.pelilogiikka.Siirto;
  * @author anterova
  */
 public class Siirtohallinta implements Siirrontarkastaja {
-    private HashMap<Class, Siirrontarkastaja> siirtohallinta;
+    private Siirtohallintahajautus siirtohallinta;
     private Matintarkastaja matintarkastaja;
     
     public Siirtohallinta() {
-        siirtohallinta = new HashMap();
+        siirtohallinta = new Siirtohallintahajautus();
         matintarkastaja = new Matintarkastaja();
-        luoSiirtohallinta();
-    }
-    
-    
-    
-    private void luoSiirtohallinta() {
-        siirtohallinta.put(new Sotilas().getClass(), new SotilasST());
-        siirtohallinta.put(new Torni().getClass(), new TorniST());
-        siirtohallinta.put(new Ratsu().getClass(), new RatsuST());
-        siirtohallinta.put(new Lahetti().getClass(), new LahettiST());
-        siirtohallinta.put(new Kuningatar().getClass(), new KuningatarST());
-        siirtohallinta.put(new Kuningas().getClass(), new KuningasST());
     }
 
     @Override
@@ -47,7 +36,7 @@ public class Siirtohallinta implements Siirrontarkastaja {
         if(alkuJaLoppuKoordinaatitSamat(xa, ya, xl, yl)) return false;
         if(alkuKoordinaatitEivatOsoitaNappulaan(kentta, xa, ya)) return false;
         if(kentta.nappulaKoordinaatissa(xa, ya).omistajanPelinumero() != pelaajaNumero) return false;
-        if(!siirtohallinta.get(kentta.nappulaKoordinaatissa(xa, ya).getClass()).tarkista(kentta, pelaajaNumero, xa, ya, xl, yl)) return false;
+        if(!siirtohallinta.hae(kentta.nappulaKoordinaatissa(xa, ya).getClass()).tarkista(kentta, pelaajaNumero, xa, ya, xl, yl)) return false;
         
         return kuningasEiJouduUhatuksi(kentta, pelaajaNumero, xa, ya, xl, yl);
     }
