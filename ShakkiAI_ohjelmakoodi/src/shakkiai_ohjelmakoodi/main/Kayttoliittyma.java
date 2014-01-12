@@ -25,7 +25,6 @@ public class Kayttoliittyma {
             peli.tulostaKentta();
             peli.pelaaVuoro();
         }
-        System.out.println("");
-        System.out.println("PELI LOPPU");
+        peli.loppuTulostus();
     }
 }

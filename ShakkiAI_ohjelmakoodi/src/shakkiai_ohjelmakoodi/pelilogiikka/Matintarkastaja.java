@@ -24,25 +24,24 @@ public class Matintarkastaja {
     }
     
     public boolean matti(Kentta kentta, int pelaajaNro) {
-        int[] koordinaatit = haeKuninkaanKoordinaatit(kentta, pelaajaNro);
-        
-        if(kentta.ruutuUhattu(pelaajaNro, koordinaatit[0], koordinaatit[1])) return false;
+        if(!shakki(kentta, pelaajaNro)) return false;
         
         Nappulahallinta nappulahallinta = new Nappulahallinta(pelaajaNro, kentta);
-        Kentta kentta2;
         Siirrettava siirrettava;
         Siirto siirto;
+        Kentta kentta2;
         
         while(nappulahallinta.nappuloitaJaljella()) {
             siirrettava = nappulahallinta.seuraava();
             
             while(siirrettava.siirtojaJaljella()) {
-                kentta2 = kentta.kopioi();
                 siirto = siirrettava.seuraavaSiirto();
+                kentta2 = kentta.kopioi();
                 kentta2.teeSiirto(siirto);
-                if(!kentta2.ruutuUhattu(pelaajaNro, koordinaatit[0], koordinaatit[1])) return false;
+                if(!shakki(kentta2,pelaajaNro)) return false;
             }
         }
+        
         
         return true;
     }

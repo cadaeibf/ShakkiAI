@@ -15,7 +15,12 @@ import shakkiai_ohjelmakoodi.util.SiirrettavaPino;
 public class Nappulahallinta {
     private SiirrettavaPino siirrettavat;
     
-    
+    /**
+     * Konstruktori luo uuden nappulahallinnan keräämällä kentältä kaikki 
+     * annetun pelaajan pelinappulat
+     * @param peliNro annetun pelaajan pelinappulat
+     * @param kentta nykyinen pelitilanne
+     */
     public Nappulahallinta(int peliNro, Kentta kentta) {
         siirrettavat = new SiirrettavaPino();
         

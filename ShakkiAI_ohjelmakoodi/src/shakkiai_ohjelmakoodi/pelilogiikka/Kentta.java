@@ -59,10 +59,6 @@ public class Kentta {
         return kopio;
     }
     
-    private void annaAsetelma(Ruutu[][] asetelma) {
-        this.kentta = asetelma;
-    } 
-    
     private void alustaRuudut() {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
@@ -82,7 +78,8 @@ public class Kentta {
         
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                if(!kentta[i][j].onTyhja() && kentta[i][j].getNappula().omistajanPelinumero() == pelaajaNro) arvo += kentta[i][j].getNappula().arvo() + painoArvo(i,j);
+                if(!kentta[i][j].onTyhja() && kentta[i][j].getNappula().omistajanPelinumero() == pelaajaNro) 
+                    arvo += kentta[i][j].getNappula().arvo() + painoArvo(i,j);
             }
         }
         
@@ -90,10 +87,10 @@ public class Kentta {
     }
     
     private double painoArvo(int x, int y) {
-        double painoArvo = 0;
+        if((x == 3 || x == 4) && (y == 3 || y == 4)) return 0.5;
+        if((x <= 5 && x >= 2) && (y <= 5 && y >= 2)) return 0.25;
         
-        
-        return painoArvo;
+        return 0.0;
     }
     
     /**

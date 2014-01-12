@@ -5,6 +5,7 @@
 package shakkiai_ohjelmakoodi.ai;
 
 import shakkiai_ohjelmakoodi.pelilogiikka.Kentta;
+import shakkiai_ohjelmakoodi.pelilogiikka.Matintarkastaja;
 import shakkiai_ohjelmakoodi.pelilogiikka.Siirto;
 
 /**
@@ -17,8 +18,10 @@ public class Siirronvalitsija {
     private Siirto parasSiirto;
     private double nykyinenArvo;
     private double alkuarvo;
+    private Matintarkastaja matintarkastaja;
     
     public Siirronvalitsija(int peliNro) {
+        matintarkastaja = new Matintarkastaja();
         omaPelinumero = peliNro;
     }
     
@@ -36,16 +39,25 @@ public class Siirronvalitsija {
     }
 
     private void valitseSiirto(Kentta kentta, int syvyys, int pelinumero) {
+        if(matintarkastaja.matti(kentta, omaPelinumero)) {
+            nykyinenArvo += laskeMattipainotus(syvyys);
+            return;
+        }
+        if(matintarkastaja.matti(kentta, vaihdaPelinumero(omaPelinumero))) {
+            nykyinenArvo -= laskeMattipainotus(syvyys);
+            return;
+        }
         if(syvyys == 3) {
             nykyinenArvo += kentta.arvo(omaPelinumero) - kentta.arvo(vaihdaPelinumero(omaPelinumero));
             return;
         }
         
+        Siirrettava siirrettava;
         Siirto siirto;
         Nappulahallinta nappulahallinta = new Nappulahallinta(pelinumero, kentta);
         
         while(nappulahallinta.nappuloitaJaljella()) {
-            Siirrettava siirrettava = nappulahallinta.seuraava();
+            siirrettava = nappulahallinta.seuraava();
 
             while(siirrettava.siirtojaJaljella()) {
                 Kentta kentta2 = kentta.kopioi();
@@ -69,6 +81,10 @@ public class Siirronvalitsija {
     private int vaihdaPelinumero(int peliNumero) {
         if(peliNumero == 1) return 2;
         return 1;
+    }
+    private double laskeMattipainotus(int syvyys) {
+        if(syvyys == 0) return 0;
+        return (double) 20 / (1 + (double) syvyys);
     }
     
 }

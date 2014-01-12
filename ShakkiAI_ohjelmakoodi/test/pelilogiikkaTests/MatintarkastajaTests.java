@@ -46,6 +46,14 @@ public class MatintarkastajaTests {
     }
     
     @Test
+    public void shakki1() {
+        kentta.haeRuutu(0, 0).setNappula(new Kuningas(new Ihmispelaaja(1)));
+        kentta.haeRuutu(0, 3).setNappula(new Torni(new Ihmispelaaja(2)));
+        
+        assertTrue(matintarkastaja.shakki(kentta, 1));
+    }
+    
+    @Test
     public void mattiKahdellaTornilla() {
         kentta.haeRuutu(0, 0).setNappula(new Kuningas(new Ihmispelaaja(1)));
         kentta.haeRuutu(0, 3).setNappula(new Torni(new Ihmispelaaja(2)));

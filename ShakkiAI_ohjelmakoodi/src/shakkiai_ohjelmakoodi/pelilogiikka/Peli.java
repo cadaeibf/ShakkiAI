@@ -78,4 +78,8 @@ public class Peli {
         }
     }
     
+    public void loppuTulostus() {
+        System.out.println("\nPELI LOPPU, VOITTAJA PELAAJA " + voittaja.getPelaajaNro());
+    }
+    
 }
