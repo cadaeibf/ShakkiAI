@@ -23,7 +23,7 @@ public class Peli {
     private Pelaaja voittaja;
     
     public Peli() {
-        pelaaja1 = new AI(1);
+        pelaaja1 = new Ihmispelaaja(1);
         pelaaja2 = new AI(2);
         kentta = new Kentta(pelaaja1, pelaaja2);
         pelivuoro = 1;

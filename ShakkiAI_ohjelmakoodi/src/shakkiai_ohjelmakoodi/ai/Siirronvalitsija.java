@@ -4,6 +4,7 @@
  */
 package shakkiai_ohjelmakoodi.ai;
 
+import java.sql.Time;
 import shakkiai_ohjelmakoodi.pelilogiikka.Kentta;
 import shakkiai_ohjelmakoodi.pelilogiikka.Matintarkastaja;
 import shakkiai_ohjelmakoodi.pelilogiikka.Siirto;
@@ -28,6 +29,7 @@ public class Siirronvalitsija {
     public Siirto teeSiirto(Kentta kentta) {
         alustaPaikallisetMuuttujat(kentta);
         valitseSiirto(kentta, 0, omaPelinumero);
+        
         return parasSiirto;
     }
 
@@ -47,7 +49,7 @@ public class Siirronvalitsija {
             nykyinenArvo -= laskeMattipainotus(syvyys);
             return;
         }
-        if(syvyys == 4) {
+        if(syvyys == 5) {
             nykyinenArvo += kentta.arvo(omaPelinumero) - kentta.arvo(vaihdaPelinumero(omaPelinumero));
             return;
         }
